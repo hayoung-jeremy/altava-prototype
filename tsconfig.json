@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@modules/*": ["src/modules/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],

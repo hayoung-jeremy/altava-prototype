@@ -4,7 +4,7 @@ import { PointerLockControls } from "@react-three/drei"
 import { useSphere } from "@react-three/cannon"
 import { Vector3 } from "three"
 
-import usePlayerControls from "@hooks/usePlayerControls"
+import usePlayerControls from "@modules/hooks/usePlayerControls"
 
 const SPEED = 10
 
