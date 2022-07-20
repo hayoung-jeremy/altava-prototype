@@ -1,14 +1,16 @@
 import React from "react"
 import { Canvas } from "@react-three/fiber"
+import { Sky } from "@react-three/drei"
 import { Physics } from "@react-three/cannon"
 
 import { Ground, Player } from "@components/three"
-import { PointerLockControls, Sky } from "@react-three/drei"
+import { EnterPopUp, MousePointer } from "@components/ui"
 
 function App() {
   return (
     <div className="w-screen h-screen">
-      <Canvas shadows gl={{ alpha: false }}>
+      {/* Scene */}
+      <Canvas shadows gl={{ alpha: false }} camera={{ fov: 75 }}>
         <Sky sunPosition={[100, 10, 100]} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
@@ -18,6 +20,10 @@ function App() {
           <Player />
         </Physics>
       </Canvas>
+
+      {/* UI */}
+      <MousePointer />
+      <EnterPopUp />
     </div>
   )
 }
