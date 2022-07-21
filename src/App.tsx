@@ -1,5 +1,5 @@
-import React, { Suspense, useState } from "react"
-import { Canvas } from "@react-three/fiber"
+import React, { Suspense, useRef, useState } from "react"
+import { Canvas, useFrame } from "@react-three/fiber"
 import {
   ContactShadows,
   CubicBezierLine,
@@ -11,17 +11,19 @@ import {
 import { Debug, Physics } from "@react-three/cannon"
 import { degToRad } from "three/src/math/MathUtils"
 
-import { Avatar, Card, Ground, Player } from "@components/three"
+import { Avatar, Card, Ground, Player, VideoContainer } from "@components/three"
 import { EnterPopUp, MousePointer } from "@components/ui"
 import { management } from "@constants/management"
 import { cls } from "@modules/utils"
+import { projectVideoList } from "@constants/projectVideoList"
 
 function App() {
   const [ready, setReady] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
 
   return (
     <div className="w-screen h-screen">
-      <Canvas shadows gl={{ alpha: false }} camera={{ fov: 75 }}>
+      <Canvas shadows gl={{ alpha: false }} camera={{ fov: 70 }}>
         <Suspense fallback={null}>
           <Stars
             radius={100}
@@ -77,9 +79,14 @@ function App() {
           </Physics>
 
           {/* Scene */}
-          <group position={[-5, 0, -5]} rotation={[0, degToRad(60), 0]}>
-            <Html scale={0.15} transform position={[2.25, 1.5, 0]}>
-              <p className="text-gray-100 text-3xl w-[200px] font-Play">
+          <group position={[-5, 0, -6]} rotation={[0, degToRad(60), 0]}>
+            <Html scale={0.15} transform position={[-1, 1.5, 0]}>
+              <p
+                className={cls(
+                  "text-gray-100 text-3xl w-[200px] font-Play",
+                  "after:w-[200px] after:h-[1px] after:bg-[#b2a1ff] after:absolute after:bottom-[-16px] after:left-[0px]"
+                )}
+              >
                 Our Leaders <br /> <span className="text-[#b2a1ff]">&</span>{" "}
                 Advisors
               </p>
@@ -88,17 +95,50 @@ function App() {
               return (
                 <Card
                   key={index}
-                  name={item.name}
+                  personName={item.name}
                   managingPosition={item.managingPosition}
                   imgURL={item.imgUrl}
-                  positionX={index + 3.2}
-                  // positionY={index * 1.2}
                   sns={item.sns}
-                  positionZ={index * 0.2}
+                  position={[index * 1.2, 0.01, 0]}
+                  rotation={[0, degToRad(-8 * index - 1), 0]}
                 />
               )
             })}
           </group>
+
+          <group position={[6, 0, -15]} rotation={[0, degToRad(-20), 0]}>
+            <mesh position={[0, 0, 0]}>
+              <lineBasicMaterial color="blue" attach="material" />
+            </mesh>
+            <Html scale={0.15} transform position={[-1.5, 2, 0]}>
+              <p
+                className={cls(
+                  "text-gray-100 text-3xl w-[200px] font-Play relative",
+                  "after:w-[200px] after:h-[1px] after:bg-[#b2a1ff] after:absolute after:bottom-[-16px] after:left-[0px]"
+                )}
+              >
+                Projects
+              </p>
+            </Html>
+            {projectVideoList.map((video, index) => {
+              return (
+                <VideoContainer
+                  key={index}
+                  position={[index * 3.5, 1.3, 0]}
+                  rotation={[0, degToRad(-10 * index), 0]}
+                  onClick={(e: any) => {
+                    e.stopPropagation()
+                    setIsClicked(!isClicked)
+                  }}
+                  title={video.title}
+                  content={video.content}
+                  videoUrl={video.videoUrl}
+                  isClicked={isClicked}
+                />
+              )
+            })}
+          </group>
+
           <CubicBezierLine
             start={[0, 0.001, -3]}
             end={[4, 0.001, -12]}
