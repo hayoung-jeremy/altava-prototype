@@ -1,6 +1,13 @@
 import React, { Suspense, useState } from "react"
 import { Canvas } from "@react-three/fiber"
-import { ContactShadows, Html, Sparkles, Stars, Stats } from "@react-three/drei"
+import {
+  ContactShadows,
+  CubicBezierLine,
+  Html,
+  Sparkles,
+  Stars,
+  Stats,
+} from "@react-three/drei"
 import { Debug, Physics } from "@react-three/cannon"
 import { degToRad } from "three/src/math/MathUtils"
 
@@ -40,13 +47,12 @@ function App() {
 
           <Physics gravity={[0, -30, 0]}>
             <Player />
-            <Debug scale={1.1} color="black">
-              <Ground />
-              <Avatar scale={0.007} position={[0, 0, -2]} />
-            </Debug>
+            <Ground />
+            <Avatar scale={0.007} position={[0, 0, -2]} />
+            {/* <Debug scale={1.1} color="black"></Debug> */}
 
             <Html scale={0.15} transform position={[0, 1.5, -1.7]}>
-              <div className="font-Questrial text-gray-200 text-center select-none backdrop-blur-sm">
+              <div className="flex flex-col items-center justify-center font-Questrial text-gray-200 text-center select-none backdrop-blur-sm">
                 <p className="mb-4">
                   We bring <span className="text-[#b2a1ff]">culture</span>{" "}
                   defining brands into the{" "}
@@ -54,19 +60,18 @@ function App() {
                   <br />
                   our virtual platforms and access to others
                 </p>
-                <button
+
+                <a
                   className={cls(
+                    "block",
                     "bg-[rgba(255,255,255,0.1)] px-4 py-1 rounded-lg transition-all border border-transparent",
                     "hover:text-[#b2a1ff] text-sm hover:border-[#b2a1ff62]"
                   )}
+                  href="https://altava.com/assets/pdf/Altava_whitepaper.pdf"
+                  target={"_blank"}
                 >
-                  <a
-                    href="https://altava.com/assets/pdf/Altava_whitepaper.pdf"
-                    target={"_blank"}
-                  >
-                    Whitepaper
-                  </a>
-                </button>
+                  Whitepaper
+                </a>
               </div>
             </Html>
           </Physics>
@@ -94,6 +99,16 @@ function App() {
               )
             })}
           </group>
+          <CubicBezierLine
+            start={[0, 0.001, -3]}
+            end={[4, 0.001, -12]}
+            midA={[-6, 0.001, -7]}
+            midB={[0, 0, -15]}
+            segments={10000}
+            color={"#3e3a4f"}
+            lineWidth={0.8}
+            dashed={false}
+          />
         </Suspense>
 
         {/* helpers */}
