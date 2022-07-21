@@ -351,22 +351,27 @@ const Avatar = ({ ...props }: JSX.IntrinsicElements["group"]) => {
         <mesh
           geometry={nodes.F_Whiteface_002_1.geometry}
           material={materials.NewMat02}
+          castShadow
         />
         <mesh
           geometry={nodes.F_Whiteface_002_2.geometry}
           material={materials.teeth}
+          castShadow
         />
         <mesh
           geometry={nodes.F_Whiteface_002_3.geometry}
           material={materials.NewMat05}
+          castShadow
         />
         <mesh
           geometry={nodes.F_Whiteface_002_4.geometry}
           material={materials.NewMat07}
+          castShadow
         />
         <mesh
           geometry={nodes.F_Whiteface_002_5.geometry}
           material={materials.NewMat06}
+          castShadow
         />
       </group>
 
@@ -383,26 +388,32 @@ const Avatar = ({ ...props }: JSX.IntrinsicElements["group"]) => {
         <mesh
           geometry={nodes.F_AREA_21SS_D004_1.geometry}
           material={materials.NewMat09}
-        ></mesh>
+          castShadow
+        />
         <mesh
           geometry={nodes.F_AREA_21SS_D004_2.geometry}
           material={materials.NewMat09}
+          castShadow
         />
         <mesh
           geometry={nodes.F_AREA_21SS_D004_3.geometry}
           material={materials.NewMat09}
+          castShadow
         />
         <mesh
           geometry={nodes.F_AREA_21SS_D004_4.geometry}
           material={materials.NewMat09}
+          castShadow
         />
         <mesh
           geometry={nodes.F_AREA_21SS_D004_5.geometry}
           material={materials.NewMat09}
+          castShadow
         />
         <mesh
           geometry={nodes.F_AREA_21SS_D004_6.geometry}
           material={materials.NewMat09}
+          castShadow
         />
       </group>
 
