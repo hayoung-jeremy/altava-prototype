@@ -1,6 +1,5 @@
 import React from "react"
 import { cls } from "@modules/utils"
-import { rgba } from "@react-spring/shared"
 
 interface Props {
   setReady: React.Dispatch<React.SetStateAction<boolean>>
@@ -49,15 +48,15 @@ const EnterPopUp = ({ setReady }: Props) => {
         )}
       >
         <h2>Hi, welcome to ALTAVA</h2>
-        <p className="text-base text-gray-500">
+        <p className="text-base text-[#7e7292]">
           press start to navigate our service
         </p>
         <button
           onClick={() => setReady(true)}
           className={cls(
-            "flex items-center justify-center px-5 py-2",
-            "text-base text-gray-400",
-            "border border-gray-600 rounded-lg",
+            "flex items-center justify-center px-8 py-1.5",
+            "text-base text-[#7e7292]",
+            "border border-[#7e7292] rounded-lg",
             "hover:text-[#a676ff] hover:border-[#a676ff] transition-all"
           )}
         >

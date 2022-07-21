@@ -6,7 +6,7 @@ import { Vector3 } from "three"
 
 import usePlayerControls from "@modules/hooks/usePlayerControls"
 
-const SPEED = 10
+const SPEED = 8
 
 const Player = () => {
   const { camera } = useThree()
@@ -17,7 +17,7 @@ const Player = () => {
   const [ref, api] = useSphere<any>(() => ({
     mass: 1,
     type: "Dynamic",
-    position: [0, 10, 0],
+    position: [0, 4, 0],
   }))
 
   const velocity = useRef([0, 0, 0])
