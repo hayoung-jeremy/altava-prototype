@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Sky } from "@react-three/drei"
 import { Physics } from "@react-three/cannon"
@@ -7,6 +7,8 @@ import { Ground, Player } from "@components/three"
 import { EnterPopUp, MousePointer } from "@components/ui"
 
 function App() {
+  const [ready, setReady] = useState(false)
+
   return (
     <div className="w-screen h-screen">
       {/* Scene */}
@@ -23,7 +25,7 @@ function App() {
 
       {/* UI */}
       <MousePointer />
-      <EnterPopUp />
+      {!ready && <EnterPopUp setReady={setReady} />}
     </div>
   )
 }
