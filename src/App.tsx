@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Canvas } from "@react-three/fiber"
-import { Sky } from "@react-three/drei"
+import { Sky, Stars } from "@react-three/drei"
 import { Physics } from "@react-three/cannon"
 
 import { Ground, Player } from "@components/three"
@@ -13,7 +13,8 @@ function App() {
     <div className="w-screen h-screen">
       {/* Scene */}
       <Canvas shadows gl={{ alpha: false }} camera={{ fov: 75 }}>
-        <Sky sunPosition={[100, 10, 100]} />
+        {/* <Sky sunPosition={[100, 10, 100]} /> */}
+        <Stars saturation={1} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
 

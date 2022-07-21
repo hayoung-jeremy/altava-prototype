@@ -1,5 +1,6 @@
 import React from "react"
 import { cls } from "@modules/utils"
+import { rgba } from "@react-spring/shared"
 
 interface Props {
   setReady: React.Dispatch<React.SetStateAction<boolean>>
@@ -9,11 +10,34 @@ const EnterPopUp = ({ setReady }: Props) => {
   return (
     <div
       className={cls(
-        "absolute top-0 left-0 z-[9999999999999999999999999999] w-screen h-screen bg-[rgba(0,0,0,1)]",
+        "absolute top-0 left-0 z-[9999999999999999999999999999] w-screen h-screen bg-gradient-to-br from-[#111] to-[#230b2e]",
         "flex items-center justify-center",
-        "font-Play select-none"
+        "font-Play select-none overflow-hidden"
       )}
     >
+      {[...Array(6)].map((_, index) => {
+        const randomSize = Math.floor(Math.random() * (400 - 160) + 160)
+        const randomAlphaVal = Math.random() * 0.05
+        const randomTopVal = Math.floor(Math.random() * (600 - 200) + 200)
+        const randomLeftVal = Math.floor(Math.random() * (800 - 200) + 200)
+
+        return (
+          <div
+            key={index}
+            style={{
+              top: randomTopVal + "px",
+              left: randomLeftVal + "px",
+              width: randomSize + "px",
+              height: randomSize + "px",
+              background: `rgba(255, 255, 255, ${randomAlphaVal})`,
+            }}
+            className={cls(
+              "deco",
+              "absolute rounded-full drop-shadow-lg blur-sm"
+            )}
+          ></div>
+        )
+      })}
       <aside
         className={cls(
           "w-[25vw] h-[12vw]",
@@ -33,8 +57,8 @@ const EnterPopUp = ({ setReady }: Props) => {
           className={cls(
             "flex items-center justify-center px-5 py-2",
             "text-base text-gray-400",
-            "border border-gray-700 rounded-lg",
-            "hover:text-[#b676ff] hover:border-[#b676ff] transition-all"
+            "border border-gray-600 rounded-lg",
+            "hover:text-[#a676ff] hover:border-[#a676ff] transition-all"
           )}
         >
           start
