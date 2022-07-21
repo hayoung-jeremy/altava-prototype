@@ -74,8 +74,9 @@ function App() {
           {/* Scene */}
           <group position={[-5, 0, -5]} rotation={[0, degToRad(60), 0]}>
             <Html scale={0.15} transform position={[2.25, 1.5, 0]}>
-              <p className="text-gray-100 text-3xl w-[120px] font-Play">
-                Our Leaders
+              <p className="text-gray-100 text-3xl w-[200px] font-Play">
+                Our Leaders <br /> <span className="text-[#b2a1ff]">&</span>{" "}
+                Advisors
               </p>
             </Html>
             {management.map((item, index) => {
@@ -87,6 +88,7 @@ function App() {
                   imgURL={item.imgUrl}
                   positionX={index + 3.2}
                   // positionY={index * 1.2}
+                  sns={item.sns}
                   positionZ={index * 0.2}
                 />
               )
@@ -101,7 +103,7 @@ function App() {
 
       {/* UI */}
       <MousePointer />
-      {!ready && <EnterPopUp setReady={setReady} />}
+      {/* {!ready && <EnterPopUp setReady={setReady} />} */}
     </div>
   )
 }
