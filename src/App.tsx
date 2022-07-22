@@ -12,7 +12,7 @@ import {
   WelcomText,
 } from "@components/three"
 import { EnterPopUp, MousePointer } from "@components/ui"
-import { Management, Project } from "@components/layout"
+import { Management, PreHaus, Project } from "@components/layout"
 
 function App() {
   const [ready, setReady] = useState(false)
@@ -41,6 +41,7 @@ function App() {
           {/* Layout */}
           <Management />
           <Project />
+          <PreHaus />
         </Suspense>
 
         {/* helpers */}

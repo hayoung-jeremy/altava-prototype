@@ -17,6 +17,7 @@ const EnvironmentSettings = () => {
       <pointLight castShadow intensity={0.6} position={[100, 100, 100]} />
       <pointLight castShadow intensity={0.4} position={[1, 2, 0]} />
       <ContactShadows
+        smooth
         position={[0, -0.8, 0]}
         opacity={0.25}
         scale={10}
