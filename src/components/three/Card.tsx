@@ -67,12 +67,11 @@ const Card = ({
           )}
           <mesh>
             <Html
-              scale={[0.13, 0.1, 0.01]}
+              scale={[0.13, 0.1, 0.05]}
               transform
-              // transform
-              // occlude
+              occlude
               // position={[-0.3, 1 - 0.55, 0.05]}
-              position={[-0.3, -0.35, 0.05]}
+              position={[-0.3, -0.35, 1]}
               // rotation={[-degToRad(90), 0, 0]}
             >
               <a
@@ -82,7 +81,8 @@ const Card = ({
                   "flex items-center justify-center",
                   "text-[#b2a1ff]",
                   "text-left font-Play",
-                  "bg-[rgba(0,0,0,.5)] p-2 rounded"
+                  "bg-[rgba(0,0,0,.5)] p-2 rounded border border-transparent",
+                  "hover:translate-y-[-2px] transition-all hover:border-[#b2a1ff]"
                 )}
               >
                 <svg
