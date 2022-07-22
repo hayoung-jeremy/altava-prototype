@@ -1,12 +1,13 @@
 import React, { Suspense, useState } from "react"
 import { Canvas } from "@react-three/fiber"
-import { CubicBezierLine, Stats } from "@react-three/drei"
+import { Stats } from "@react-three/drei"
 import { Debug, Physics } from "@react-three/cannon"
 
 import {
   Avatar,
   EnvironmentSettings,
   Ground,
+  Guidlines,
   Player,
   WelcomText,
 } from "@components/three"
@@ -25,7 +26,6 @@ function App() {
         frameloop="demand"
       >
         <Suspense fallback={null}>
-          <EnvironmentSettings />
           <Physics gravity={[0, -30, 0]}>
             <Player />
             <Ground />
@@ -33,29 +33,14 @@ function App() {
             {/* <Debug scale={1.1} color="black"></Debug> */}
             <WelcomText />
           </Physics>
+
+          {/* default settings */}
+          <EnvironmentSettings />
+          <Guidlines />
+
           {/* Layout */}
           <Management />
           <Project />
-          <CubicBezierLine
-            start={[0, 0.001, -3]}
-            midA={[-6, 0.001, -7]}
-            midB={[0, 0, -15]}
-            end={[4, 0.001, -12]}
-            segments={100}
-            color={"#7f6d94"}
-            lineWidth={0.8}
-            dashed={false}
-          />
-          <CubicBezierLine
-            start={[4, 0.001, -12]}
-            midA={[0, 0, 0]}
-            midB={[0, 0, 0]}
-            end={[0, 0, 0]}
-            segments={100}
-            color={"#7f6d94"}
-            lineWidth={0.8}
-            dashed={false}
-          />
         </Suspense>
 
         {/* helpers */}
