@@ -27,7 +27,7 @@ const Card = ({
 
   return (
     <Suspense fallback={null}>
-      <mesh
+      <group
         ref={ref}
         onPointerOver={(e: any) => {
           e.stopPropagation()
@@ -45,13 +45,28 @@ const Card = ({
             position={[0, 1, 0]}
           />
         )}
-        <RoundedBox scale={[1, 1.5, 0.01]} position={[0, 1, -0.01]} castShadow>
+        <RoundedBox
+          radius={0.02}
+          scale={[1, 1.5, 0.01]}
+          position={[0, 1, -0.01]}
+          castShadow
+        >
           <meshStandardMaterial
             side={THREE.FrontSide}
             color={isHovered ? "#4b4275" : color}
           />
+        </RoundedBox>
+        <Image
+          url="images/altavaGroup_mark_gradient.png"
+          scale={0.35}
+          opacity={0.99999}
+          transparent
+          position={[0, 1, -0.02]}
+          rotation={[0, Math.PI, 0]}
+        />
+        <group>
           {isHovered && (
-            <Html scale={0.1} transform position={[0, -0.6, 0]}>
+            <Html scale={0.1} transform position={[0, 0.15, 0]}>
               <p
                 className={cls(
                   "flex gap-3",
@@ -65,53 +80,36 @@ const Card = ({
               </p>
             </Html>
           )}
-          <mesh>
-            <Html
-              scale={[0.13, 0.1, 0.05]}
-              transform
-              occlude
-              // position={[-0.3, 1 - 0.55, 0.05]}
-              position={[-0.3, -0.35, 1]}
-              // rotation={[-degToRad(90), 0, 0]}
+          <Html scale={0.1} occlude transform position={[-0.35, 0.4, 0.02]}>
+            <a
+              href={sns}
+              target={"_blank"}
+              className={cls(
+                "flex items-center justify-center",
+                "text-[#b2a1ff]",
+                "text-left font-Play",
+                "bg-[rgba(0,0,0,.5)] p-2 rounded border border-transparent",
+                "hover:mb-2 transition-all hover:border-[#b2a1ff]"
+              )}
             >
-              <a
-                href={sns}
-                target={"_blank"}
-                className={cls(
-                  "flex items-center justify-center",
-                  "text-[#b2a1ff]",
-                  "text-left font-Play",
-                  "bg-[rgba(0,0,0,.5)] p-2 rounded border border-transparent",
-                  "hover:translate-y-[-2px] transition-all hover:border-[#b2a1ff]"
-                )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-            </Html>
-          </mesh>
-        </RoundedBox>
-        <Image
-          url="images/altavaGroup_mark_gradient.png"
-          scale={0.35}
-          opacity={0.99999}
-          transparent
-          position={[0, 1, -0.02]}
-          rotation={[0, Math.PI, 0]}
-        />
-      </mesh>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          </Html>
+        </group>
+      </group>
     </Suspense>
   )
 }

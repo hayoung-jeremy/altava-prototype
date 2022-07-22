@@ -4,8 +4,14 @@ import { cls } from "@modules/utils"
 
 const WelcomText = () => {
   return (
-    <Html scale={0.15} transform position={[0, 1.5, -1.7]}>
-      <div className="flex flex-col items-center justify-center font-Questrial text-gray-200 text-center select-none backdrop-blur-sm">
+    <Html scale={0.1} transform position={[0, 0.8, -1.7]}>
+      <div
+        className={cls(
+          "flex flex-col items-center justify-center font-Questrial text-gray-200 text-center select-none relative",
+          "p-8 rounded-lg",
+          "bg-[rgba(0,0,0,0.8)] border-[rgba(255,255,255,0.2)] border"
+        )}
+      >
         <p className="mb-4">
           We bring <span className="text-[#b2a1ff]">culture</span> defining
           brands into the <span className="text-[#b2a1ff]">metaverse</span>{" "}
