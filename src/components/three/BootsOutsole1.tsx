@@ -16,7 +16,7 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
+export default function Model({ ...props }: any) {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF(
     "assets/boots/NFT_BOOTS_OP1.glb"
@@ -29,6 +29,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         geometry={nodes.OP1_OUTSOLE_01.geometry}
         material={materials.OP1_OUTSOLE_01}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color={props.color}
       />
       <mesh
         castShadow
@@ -36,6 +37,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         geometry={nodes.OP1_OUTSOLE_02.geometry}
         material={materials.OP1_OUTSOLE_02}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color={props.color}
       />
       <mesh
         castShadow
@@ -43,6 +45,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         geometry={nodes.OP1_OUTSOLE_03.geometry}
         material={materials.OP1_OUTSOLE_03}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color={props.color}
       />
       <mesh
         castShadow
@@ -50,6 +53,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         geometry={nodes.OP1_OUTSOLE_04.geometry}
         material={materials.OP1_OUTSOLE_04}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color={props.color}
       />
       <mesh
         castShadow
@@ -57,6 +61,7 @@ export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
         geometry={nodes.OP1_OUTSOLE_05.geometry}
         material={materials.OP1_OUTSOLE_05}
         rotation={[-Math.PI / 2, 0, 0]}
+        material-color={props.color}
       />
     </group>
   )

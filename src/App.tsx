@@ -2,6 +2,7 @@ import React, { Suspense, useState } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Stats } from "@react-three/drei"
 import { Debug, Physics } from "@react-three/cannon"
+import * as THREE from "three"
 
 import {
   Avatar,
@@ -21,7 +22,11 @@ function App() {
     <div className="w-screen h-screen">
       <Canvas
         shadows
-        gl={{ alpha: true }}
+        gl={{
+          alpha: false,
+          antialias: true,
+          outputEncoding: THREE.sRGBEncoding,
+        }}
         camera={{ fov: 70 }}
         frameloop="demand"
       >
@@ -29,7 +34,7 @@ function App() {
           <Physics gravity={[0, -30, 0]}>
             <Player />
             <Ground />
-            <Avatar scale={0.007} position={[0, 0, -2]} />
+            {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
             {/* <Debug scale={1.1} color="black"></Debug> */}
             <WelcomText />
           </Physics>

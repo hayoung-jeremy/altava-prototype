@@ -1,5 +1,6 @@
 import React from "react"
-import { ContactShadows, Sparkles, Stars } from "@react-three/drei"
+import { ContactShadows, Sparkles, SpotLight, Stars } from "@react-three/drei"
+import { degToRad } from "three/src/math/MathUtils"
 
 const EnvironmentSettings = () => {
   return (
@@ -16,6 +17,17 @@ const EnvironmentSettings = () => {
       <ambientLight intensity={0.2} />
       <pointLight castShadow intensity={0.6} position={[100, 100, 100]} />
       <pointLight castShadow intensity={0.4} position={[1, 2, 0]} />
+      <SpotLight
+        penumbra={0.5}
+        // depthBuffer={depthBuffer}
+        position={[0, 1, 0]}
+        rotation={[degToRad(90), 0, 0]}
+        intensity={0.5}
+        angle={0.1}
+        color="#0EEC82"
+        castShadow
+        distance={1}
+      />
       <ContactShadows
         smooth
         position={[0, -0.8, 0]}

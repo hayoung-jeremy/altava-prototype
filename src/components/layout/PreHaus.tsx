@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Html, Text } from "@react-three/drei"
+import { Html, RoundedBox, SpotLight, Text } from "@react-three/drei"
 
 import {
   BootsBody,
@@ -15,21 +15,34 @@ import { useFrame } from "@react-three/fiber"
 const outsoleOptions = [
   {
     type: "outsole option 1",
+    isHovered: false,
   },
   {
     type: "outsole option 2",
+    isHovered: false,
   },
   {
     type: "outsole option 3",
+    isHovered: false,
   },
   {
     type: "outsole option 4",
+    isHovered: false,
   },
 ]
 
 const PreHaus = () => {
   const [color, setColor] = useState("fff")
+  const [hoverIndex, setHoverIndex] = useState(0)
   const [outsoleOption, setOutsoleOption] = useState(0)
+
+  const fontProps = {
+    font: "/src/styles/fonts/Play-Regular.ttf",
+    fontSize: 0.1,
+    letterSpacing: -0.05,
+    lineHeight: 1,
+    "material-toneMapped": false,
+  }
 
   return (
     <group
@@ -49,48 +62,69 @@ const PreHaus = () => {
         </p>
       </Html>
       <group rotation={[degToRad(10), degToRad(10), 0]}>
-        <BootsBody scale={0.01} color={color} />
+        <BootsBody scale={0.1} color={color} />
         {outsoleOption === 0 && (
-          <BootsOutsole1 scale={0.01} position={[0, 0, 0]} />
+          <BootsOutsole1 scale={0.1} position={[0, 0, 0]} />
         )}
         {outsoleOption === 1 && (
-          <BootsOutsole2 scale={0.01} position={[0, 0, 0]} />
+          <BootsOutsole2 scale={0.1} position={[0, 0, 0]} />
         )}
         {outsoleOption === 2 && (
-          <BootsOutsole3 scale={0.01} position={[0, 0, 0]} />
+          <BootsOutsole3 scale={0.1} position={[0, 0, 0]} />
         )}
         {outsoleOption === 3 && (
-          <BootsOutsole4 scale={0.01} position={[0, 0, 0]} />
+          <BootsOutsole4 scale={0.1} position={[0, 0, 0]} />
         )}
       </group>
 
-      <Html
-        transform
-        scale={0.1}
-        position={[0.55, 0.15, 0]}
-        raycast={() => null}
-      >
-        <div className="w-[160px] flex flex-col gap-2">
-          {outsoleOptions.map((item, index) => {
-            return (
-              <button
-                onClick={() => setOutsoleOption(index)}
-                className={cls(
-                  "outline-none flex justify-center items-center",
-                  "bg-[rgba(255,255,255,0.1)] px-2 py-1 rounded-lg transition-all border border-transparent",
-                  "text-sm",
-                  "hover:text-[#b2a1ff] hover:border-[#b2a1ff62]",
-                  outsoleOption === index
-                    ? "text-[#b2a1ff] border-[#b2a1ff62]"
-                    : "text-[#ddd]"
-                )}
+      <group position={[-0.4, 0.3, 0]}>
+        {outsoleOptions.map((item, index) => {
+          return (
+            <group
+              key={index}
+              onClick={() => setOutsoleOption(index)}
+              onPointerOver={() => setHoverIndex(index)}
+              onPointerOut={() => setHoverIndex(outsoleOption)}
+              position={[1, -index * 0.1, 0]}
+            >
+              <Text
+                position={[0, 0, 0.01]}
+                color={
+                  index === outsoleOption || hoverIndex === index
+                    ? "#b2a1ff"
+                    : "white"
+                }
+                anchorX="center"
+                anchorY="middle"
+                scale={0.4}
+                {...fontProps}
               >
                 {item.type}
-              </button>
-            )
-          })}
-        </div>
-      </Html>
+              </Text>
+              <RoundedBox
+                receiveShadow
+                castShadow
+                args={[0.4, 0.08, 0.1]}
+                scale={[1, 1, 0.05]}
+                radius={0.02}
+                smoothness={4}
+              >
+                <meshStandardMaterial
+                  transparent
+                  opacity={
+                    hoverIndex === index || index === outsoleOption ? 0.2 : 0.1
+                  }
+                  color={
+                    hoverIndex === index || index === outsoleOption
+                      ? "#b2a1ff"
+                      : "white"
+                  }
+                />
+              </RoundedBox>
+            </group>
+          )
+        })}
+      </group>
     </group>
   )
 }
