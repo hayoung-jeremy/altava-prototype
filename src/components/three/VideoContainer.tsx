@@ -22,7 +22,7 @@ const VideoContainer = ({ title, content, videoUrl, ...props }: any) => {
   }, [video])
   return (
     <mesh {...props} receiveShadow castShadow>
-      <planeBufferGeometry attach="geometry" args={[2, 2]} />
+      <planeBufferGeometry attach="geometry" args={[1.5, 1.5]} />
       <meshStandardMaterial
         attach="material"
         toneMapped={false}
@@ -38,10 +38,10 @@ const VideoContainer = ({ title, content, videoUrl, ...props }: any) => {
         />
       </meshStandardMaterial>
       <mesh receiveShadow castShadow>
-        <planeBufferGeometry attach="geometry" args={[2, 2]} />
+        <planeBufferGeometry attach="geometry" args={[1.5, 1.5]} />
         <meshStandardMaterial side={THREE.BackSide} color="#7f6d94" />
       </mesh>
-      <Html scale={0.15} transform position={[1.5, 0.5, 0]}>
+      <Html scale={0.15} transform position={[1.2, 0, 0]}>
         <div className="max-w-[200px] text-white font-Play">
           <p className="text-lg mb-2 text-[#b2a1ff]">{title}</p>
           <p className="font-Questrial text-sm">{content}</p>
