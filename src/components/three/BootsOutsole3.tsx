@@ -25,7 +25,7 @@ export default function Model({ ...props }: any) {
     <group ref={group} {...props} dispose={null}>
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP3_OUTSOLE_01.geometry}
         material={materials.OP3_OUTSOLE_01}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -33,7 +33,7 @@ export default function Model({ ...props }: any) {
       />
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP3_OUTSOLE_02.geometry}
         material={materials.OP3_OUTSOLE_02}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -41,7 +41,7 @@ export default function Model({ ...props }: any) {
       />
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP3_OUTSOLE_03.geometry}
         material={materials.OP3_OUTSOLE_03}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -49,7 +49,7 @@ export default function Model({ ...props }: any) {
       />
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP3_OUTSOLE_04.geometry}
         material={materials.OP3_OUTSOLE_04}
         rotation={[-Math.PI / 2, 0, 0]}

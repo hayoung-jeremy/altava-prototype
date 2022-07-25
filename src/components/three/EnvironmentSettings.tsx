@@ -1,9 +1,24 @@
-import React from "react"
-import { ContactShadows, Sparkles, SpotLight, Stars } from "@react-three/drei"
+import React, { useRef } from "react"
+import * as THREE from "three"
+import {
+  ContactShadows,
+  Sparkles,
+  SpotLight,
+  Stars,
+  useHelper,
+} from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
-import { PointLightShadow } from "three"
 
 const EnvironmentSettings = () => {
+  const projectPointLight = useRef<any>()
+  useHelper(projectPointLight, THREE.PointLightHelper, 1, "magenta")
+
+  const managmentSpotLight = useRef<any>()
+  useHelper(managmentSpotLight, THREE.SpotLightHelper, "cyan")
+
+  const hausPointLight = useRef<any>()
+  useHelper(hausPointLight, THREE.PointLightHelper, 1, "cyan")
+
   return (
     <>
       <Stars
@@ -15,31 +30,35 @@ const EnvironmentSettings = () => {
         fade
       />
       <Sparkles position={[0, 0, -2]} />
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.3} />
+
+      {/* managmentSpotLight */}
+
+      {/* projectPointLight */}
       <pointLight
+        // ref={projectPointLight}
+        position={[6, 5, -12]}
         castShadow
-        shadow-mapSize={[256, 256]}
-        intensity={0.6}
-        position={[50, 50, 50]}
+        shadow-mapSize={[2048, 2048]}
+        intensity={0.2}
       />
-      {/* <pointLight intensity={0.4} position={[1, 2, 0]} /> */}
-      <SpotLight
-        penumbra={0.5}
-        // depthBuffer={depthBuffer}
-        position={[0, 1, 0]}
-        rotation={[degToRad(90), 0, 0]}
-        intensity={0.5}
-        angle={0.1}
-        color="#0EEC82"
-        distance={1}
+
+      {/* hausPointLight */}
+      <pointLight
+        // ref={hausPointLight}
+        position={[16, 2, -5]}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+        intensity={0.2}
       />
+
       <ContactShadows
         smooth
         position={[0, -0.8, 0]}
-        opacity={0.25}
-        width={40}
-        height={40}
-        far={9}
+        opacity={1}
+        width={1}
+        height={1}
+        far={1}
         blur={1.5}
       />
       <color attach="background" args={["#202020"]} />

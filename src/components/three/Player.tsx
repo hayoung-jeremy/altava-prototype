@@ -82,8 +82,8 @@ const Player = ({ isCustomModalOpen }: Props) => {
       <mesh ref={ref}></mesh>
       {!isCustomModalOpen && (
         <PointerLockControls
-          onLock={() => console.log("Controls locked")}
-          onUnlock={() => console.log("Controls unlocked")}
+        // onLock={() => console.log("Controls locked")}
+        // onUnlock={() => console.log("Controls unlocked")+}
         />
       )}
     </>

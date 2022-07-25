@@ -34,7 +34,7 @@ function App() {
 
       {/* UI */}
       <MousePointer />
-      {/* {!ready && <EnterPopUp setReady={setReady} />} */}
+      {!ready && <EnterPopUp setReady={setReady} />}
       {isCustomModalOpen && (
         <PreHausCustomization setIsCustomModalOpen={setIsCustomModalOpen} />
       )}

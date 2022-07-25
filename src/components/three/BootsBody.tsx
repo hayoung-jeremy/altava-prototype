@@ -26,7 +26,7 @@ export default function Model({ ...props }: any) {
       {/* Quarter */}
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP1_BASE_01.geometry}
         material={materials.OP1_BASE_01}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -36,7 +36,7 @@ export default function Model({ ...props }: any) {
       {/* Vamp */}
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP1_BASE_02.geometry}
         material={materials.OP1_BASE_02}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -45,7 +45,7 @@ export default function Model({ ...props }: any) {
       {/* Lace */}
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP1_BASE_03.geometry}
         material={materials.OP1_BASE_03}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -55,7 +55,7 @@ export default function Model({ ...props }: any) {
       {/* Back Counter */}
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP1_BASE_04.geometry}
         material={materials.OP1_BASE_04}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -65,7 +65,7 @@ export default function Model({ ...props }: any) {
       {/* Pull loops */}
       <mesh
         castShadow
-        receiveShadow
+        // receiveShadow
         geometry={nodes.OP1_BASE_05.geometry}
         material={materials.OP1_BASE_05}
         rotation={[-Math.PI / 2, 0, 0]}

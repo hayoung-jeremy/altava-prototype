@@ -13,13 +13,13 @@ const VideoContainer = ({ title, content, videoUrl, ...props }: any) => {
     Object.assign(document.createElement("video"), {
       src: videoUrl,
       crossOrigin: "Anonymous",
-      loop: true,
+      // loop: true,
       muted: true,
     })
   )
-  useEffect(() => {
-    video.play()
-  }, [video])
+  // useEffect(() => {
+  //   video.play()
+  // }, [video])
   return (
     <mesh {...props} receiveShadow castShadow>
       <planeBufferGeometry attach="geometry" args={[1.5, 1.5]} />
