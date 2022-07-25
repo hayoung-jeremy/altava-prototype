@@ -30,7 +30,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_BASE_01.geometry}
         material={materials.OP1_BASE_01}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={props.OP1_BASE_01_color}
       />
 
       {/* Vamp */}

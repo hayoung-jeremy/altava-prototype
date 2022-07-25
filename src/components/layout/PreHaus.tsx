@@ -11,24 +11,7 @@ import {
 import { cls } from "@modules/utils"
 import { degToRad } from "three/src/math/MathUtils"
 
-const outsoleOptions = [
-  {
-    type: "outsole option 1",
-    isHovered: false,
-  },
-  {
-    type: "outsole option 2",
-    isHovered: false,
-  },
-  {
-    type: "outsole option 3",
-    isHovered: false,
-  },
-  {
-    type: "outsole option 4",
-    isHovered: false,
-  },
-]
+
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -36,16 +19,7 @@ interface Props {
 
 const PreHaus = ({ setIsCustomModalOpen }: Props) => {
   const [color, setColor] = useState("#fff")
-  const [hoverIndex, setHoverIndex] = useState(0)
   const [outsoleOption, setOutsoleOption] = useState(0)
-
-  const fontProps = {
-    font: "/src/styles/fonts/Play-Regular.ttf",
-    fontSize: 0.1,
-    letterSpacing: -0.05,
-    lineHeight: 1,
-    "material-toneMapped": false,
-  }
 
   return (
     <group
@@ -97,53 +71,6 @@ const PreHaus = ({ setIsCustomModalOpen }: Props) => {
       </group>
 
       <Html transform position={[0.5, 0.1, 0]} scale={0.1}></Html>
-
-      {/* <group position={[-0.4, 0.3, 0]}>
-        {outsoleOptions.map((item, index) => {
-          return (
-            <group
-              key={index}
-              onClick={() => setOutsoleOption(index)}
-              onPointerOver={() => setHoverIndex(index)}
-              onPointerOut={() => setHoverIndex(outsoleOption)}
-              position={[1, -index * 0.1, 0]}
-            >
-              <Text
-                position={[0, 0, 0.01]}
-                color={
-                  index === outsoleOption || hoverIndex === index
-                    ? "#b2a1ff"
-                    : "white"
-                }
-                anchorX="center"
-                anchorY="middle"
-                scale={0.4}
-                {...fontProps}
-              >
-                {item.type}
-              </Text>
-              <RoundedBox
-                args={[0.4, 0.08, 0.1]}
-                scale={[1, 1, 0.05]}
-                radius={0.02}
-                smoothness={4}
-              >
-                <meshStandardMaterial
-                  transparent
-                  opacity={
-                    hoverIndex === index || index === outsoleOption ? 0.2 : 0.1
-                  }
-                  color={
-                    hoverIndex === index || index === outsoleOption
-                      ? "#b2a1ff"
-                      : "white"
-                  }
-                />
-              </RoundedBox>
-            </group>
-          )
-        })}
-      </group> */}
     </group>
   )
 }
