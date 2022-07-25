@@ -9,7 +9,6 @@ import {
   Guidlines,
   Player,
   WelcomText,
-  Loader,
 } from "@components/three"
 import { Management, PreHaus, Project } from "@components/layout"
 
@@ -20,7 +19,7 @@ interface Props {
 
 const Altaverse = ({ isCustomModalOpen, setIsCustomModalOpen }: Props) => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={null}>
       <Physics gravity={[0, -30, 0]}>
         <Player isCustomModalOpen={isCustomModalOpen} />
         <Ground />

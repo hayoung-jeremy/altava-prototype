@@ -1,12 +1,6 @@
 import React, { useRef } from "react"
 import * as THREE from "three"
-import {
-  ContactShadows,
-  Sparkles,
-  SpotLight,
-  Stars,
-  useHelper,
-} from "@react-three/drei"
+import { ContactShadows, Sparkles, Stars, useHelper } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
 
 const EnvironmentSettings = () => {
