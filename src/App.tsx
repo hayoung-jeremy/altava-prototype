@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { Suspense, useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 import { Canvas } from "@react-three/fiber"
 import { PointerLockControls, Stats } from "@react-three/drei"
 
-import { Altaverse, PreHausCustomization } from "@components/three"
+import { Altaverse, Loader, PreHausCustomization } from "@components/three"
 import { EnterPopUp, MousePointer } from "@components/ui"
 
 function App() {
@@ -22,10 +22,12 @@ function App() {
         camera={{ fov: 70 }}
         frameloop="demand"
       >
-        <Altaverse
-          isCustomModalOpen={isCustomModalOpen}
-          setIsCustomModalOpen={setIsCustomModalOpen}
-        />
+        <Suspense fallback={<Loader />}>
+          <Altaverse
+            isCustomModalOpen={isCustomModalOpen}
+            setIsCustomModalOpen={setIsCustomModalOpen}
+          />
+        </Suspense>
 
         {/* helpers */}
         <Stats />

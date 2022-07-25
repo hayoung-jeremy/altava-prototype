@@ -44,7 +44,7 @@ const EnterPopUp = ({ setReady }: Props) => {
           "text-[#bebebe] text-2xl",
           "bg-[rgba(255,255,255,0.04)] backdrop-blur-sm drop-shadow-2xl",
           "border-l border-t border-l-[rgba(255,255,255,0.05)] border-t-[rgba(255,255,255,0.1)] rounded-lg",
-          "hover:bg-[rgba(255,255,255,0.06)] hover:border-l-[rgba(196,145,255,0.2)] hover:border-t-[rgba(196,145,255,0.2)] transition-all duration-[400ms]"
+          "hover:bg-[rgba(255,255,255,0.06)] hover:border-l-[rgba(196,145,255,0.2)] hover:border-t-[rgba(196,145,255,0.2)] transition-all"
         )}
       >
         <h2>Hi, welcome to ALTAVA</h2>

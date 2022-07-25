@@ -24,7 +24,7 @@ const Altaverse = ({ isCustomModalOpen, setIsCustomModalOpen }: Props) => {
       <Physics gravity={[0, -30, 0]}>
         <Player isCustomModalOpen={isCustomModalOpen} />
         <Ground />
-        <Avatar scale={0.007} position={[0, 0, -2]} />
+        {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
         {/* <Debug scale={1.1} color="black"></Debug> */}
         <WelcomText />
       </Physics>
