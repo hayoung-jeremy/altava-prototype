@@ -1,22 +1,14 @@
-import React, { Suspense, useState } from "react"
-import { Canvas } from "@react-three/fiber"
-import { Stats } from "@react-three/drei"
-import { Debug, Physics } from "@react-three/cannon"
+import React, { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
+import { Canvas } from "@react-three/fiber"
+import { PointerLockControls, Stats } from "@react-three/drei"
 
-import {
-  Avatar,
-  EnvironmentSettings,
-  Ground,
-  Guidlines,
-  Player,
-  WelcomText,
-} from "@components/three"
+import { Altaverse, PreHausCustomization } from "@components/three"
 import { EnterPopUp, MousePointer } from "@components/ui"
-import { Management, PreHaus, Project } from "@components/layout"
 
 function App() {
   const [ready, setReady] = useState(false)
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false)
 
   return (
     <div className="w-screen h-screen">
@@ -30,33 +22,22 @@ function App() {
         camera={{ fov: 70 }}
         frameloop="demand"
       >
-        <Suspense fallback={null}>
-          <Physics gravity={[0, -30, 0]}>
-            <Player />
-            <Ground />
-            {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
-            {/* <Debug scale={1.1} color="black"></Debug> */}
-            <WelcomText />
-          </Physics>
-
-          {/* default settings */}
-          <EnvironmentSettings />
-          <Guidlines />
-
-          {/* Layout */}
-          <Management />
-          <Project />
-          <PreHaus />
-        </Suspense>
+        <Altaverse
+          isCustomModalOpen={isCustomModalOpen}
+          setIsCustomModalOpen={setIsCustomModalOpen}
+        />
 
         {/* helpers */}
-        {/* <gridHelper args={[30, 30]} /> */}
         <Stats />
+        {/* <gridHelper args={[30, 30]} /> */}
       </Canvas>
 
       {/* UI */}
       <MousePointer />
       {/* {!ready && <EnterPopUp setReady={setReady} />} */}
+      {isCustomModalOpen && (
+        <PreHausCustomization setIsCustomModalOpen={setIsCustomModalOpen} />
+      )}
     </div>
   )
 }

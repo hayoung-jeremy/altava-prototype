@@ -8,8 +8,13 @@ import usePlayerControls from "@modules/hooks/usePlayerControls"
 
 const SPEED = 8
 
-const Player = () => {
+interface Props {
+  isCustomModalOpen: boolean
+}
+
+const Player = ({ isCustomModalOpen }: Props) => {
   const { camera } = useThree()
+  const controller = useRef<any>(null)
 
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     usePlayerControls()
@@ -50,14 +55,37 @@ const Player = () => {
     }
   })
 
+  // useEffect(() => {
+  //   if (controller.current) {
+  //     if (isCustomModalOpen) {
+  //       controller.current.unlock()
+
+  //       document.exitPointerLock()
+  //     }
+  //     if (!isCustomModalOpen) controller.current.lock()
+  //   }
+  // }, [isCustomModalOpen])
+
+  // useEffect(() => {
+  //   if (controller.current) {
+  //     console.log(controller.current)
+  //     if (isCustomModalOpen) {
+  //       controller.current.unlock()
+  //       // document.exitPointerLock()
+  //     }
+  //     if (!isCustomModalOpen) controller.current.lock()
+  //   }
+  // }, [controller.current])
+
   return (
     <>
       <mesh ref={ref}></mesh>
-      <PointerLockControls
-      // onChange={() => console.log("Controls change")}
-      // onLock={() => console.log("Controls locked")}
-      // onUnlock={() => console.log("Controls unlocked")}
-      />
+      {!isCustomModalOpen && (
+        <PointerLockControls
+          onLock={() => console.log("Controls locked")}
+          onUnlock={() => console.log("Controls unlocked")}
+        />
+      )}
     </>
   )
 }

@@ -9,7 +9,7 @@ import { Card } from "@components/three"
 const Management = () => {
   return (
     <group position={[-5, 0, -6]} rotation={[0, degToRad(60), 0]}>
-      <Html scale={0.15} transform position={[-1, 1.5, 0]}>
+      <Html scale={0.15} transform position={[-1, 1, 0]}>
         <p
           className={cls(
             "text-gray-100 text-3xl w-[200px] font-Play",

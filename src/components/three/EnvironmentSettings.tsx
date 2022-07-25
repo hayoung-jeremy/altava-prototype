@@ -18,8 +18,7 @@ const EnvironmentSettings = () => {
       <ambientLight intensity={0.2} />
       <pointLight
         castShadow
-        shadow-mapSize-width={256}
-        shadow-mapSize-height={256}
+        shadow-mapSize={[256, 256]}
         intensity={0.6}
         position={[50, 50, 50]}
       />

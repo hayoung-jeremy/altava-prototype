@@ -11,7 +11,7 @@ const Ground = (props: any) => {
   const texture = useLoader(TextureLoader, "images/background-texture.jpg")
   texture.wrapS = RepeatWrapping
   texture.wrapT = RepeatWrapping
-  texture.repeat.set(24, 24)
+  texture.repeat.set(10, 10)
 
   return (
     <mesh ref={ref} receiveShadow {...props}>

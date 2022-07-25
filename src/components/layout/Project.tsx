@@ -9,10 +9,7 @@ import { projectVideoList } from "@constants/projectVideoList"
 const Project = () => {
   return (
     <group position={[6, 0, -15]} rotation={[0, degToRad(-20), 0]}>
-      <mesh position={[0, 0, 0]}>
-        <lineBasicMaterial color="blue" attach="material" />
-      </mesh>
-      <Html scale={0.15} transform position={[-1.5, 2, 0]}>
+      <Html scale={0.15} transform position={[-1.5, 1, 0]}>
         <p
           className={cls(
             "text-gray-100 text-3xl w-[200px] font-Play relative",
@@ -26,7 +23,7 @@ const Project = () => {
         return (
           <VideoContainer
             key={index}
-            position={[index * 3.5, 1.3, 0]}
+            position={[index * 3, 1, 0]}
             rotation={[0, degToRad(-10 * index), 0]}
             title={video.title}
             content={video.content}
