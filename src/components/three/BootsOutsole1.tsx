@@ -6,6 +6,7 @@ import * as THREE from "three"
 import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
 import { GLTF } from "three-stdlib"
+import { useSnapshot } from "valtio"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,6 +22,9 @@ export default function Model({ ...props }: any) {
   const { nodes, materials } = useGLTF(
     "assets/boots/NFT_BOOTS_OP1.glb"
   ) as GLTFResult
+
+  const snap = useSnapshot(props.state)
+
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh
@@ -29,7 +33,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_01.geometry}
         material={materials.OP1_OUTSOLE_01}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Outsole}
       />
       <mesh
         castShadow
@@ -37,7 +41,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_02.geometry}
         material={materials.OP1_OUTSOLE_02}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Outsole}
       />
       <mesh
         castShadow
@@ -45,7 +49,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_03.geometry}
         material={materials.OP1_OUTSOLE_03}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Outsole}
       />
       <mesh
         castShadow
@@ -53,7 +57,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_04.geometry}
         material={materials.OP1_OUTSOLE_04}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Outsole}
       />
       <mesh
         castShadow
@@ -61,7 +65,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_05.geometry}
         material={materials.OP1_OUTSOLE_05}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Outsole}
       />
     </group>
   )

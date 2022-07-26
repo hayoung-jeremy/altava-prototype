@@ -1,21 +1,23 @@
-import { outsoleOptions } from "@constants/preHaus"
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import { outsoleOptions, selectedPartsName } from "@constants/preHaus"
+import { ColorPicker } from "@components/ui"
 import { cls } from "@modules/utils"
-import React, { useState } from "react"
 
 interface Props {
-  selectedPartName: string
   selectedPartIndex: number
   setSelectedPartIndex: React.Dispatch<React.SetStateAction<number>>
   setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
 }
 
 const PreHausSelectParts = ({
-  selectedPartName,
   selectedPartIndex,
   setSelectedPartIndex,
   setOutsoleOption,
 }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedOutsoleIndex, setSelectedOutsoleIndex] = useState(0)
+
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false)
+  const [colorPickerColor, setColorPickerColor] = useState("#aabbcc")
 
   const onClickToNextPart = () => {
     if (selectedPartIndex < 5) setSelectedPartIndex(selectedPartIndex + 1)
@@ -26,8 +28,20 @@ const PreHausSelectParts = ({
     else setSelectedPartIndex(selectedPartIndex - 1)
   }
 
+  const onSelectPartsColor = (
+    selectedPartIndex: number,
+    selectedColor: string
+  ) => {
+    // setColor((prev : []) => {
+    //     let aa : [] = prev
+    //     aa[idx] = selectedColor
+    //     return aa
+    // })
+  }
+
   return (
     <footer
+      onClick={() => setIsColorPickerOpen(false)}
       className={cls(
         "w-full h-[300px]",
         "flex flex-col items-center justify-start gap-5",
@@ -58,7 +72,7 @@ const PreHausSelectParts = ({
           </svg>
         </button>
         <p className="w-[200px] flex items-center justify-center text-xl">
-          {selectedPartName}
+          {selectedPartsName[selectedPartIndex]}
         </p>
         <button
           onClick={onClickToNextPart}
@@ -88,14 +102,14 @@ const PreHausSelectParts = ({
                 key={index}
                 onClick={() => {
                   setOutsoleOption(index)
-                  setSelectedIndex(index)
+                  setSelectedOutsoleIndex(index)
                 }}
                 className={cls(
                   "transition-all cursor-pointer",
                   "border rounded",
                   "bg-[#333] px-4 py-1",
                   "hover:bg-[#333] hover:text-[#b2a1ff]",
-                  selectedIndex === index
+                  selectedOutsoleIndex === index
                     ? "border-[#b2a1ff] text-[#b2a1ff]"
                     : "border-transparent text-white"
                 )}
@@ -107,19 +121,27 @@ const PreHausSelectParts = ({
         </ul>
       )}
       <p>Color Spectrum</p>
-      <ul className="flex gap-2">
+      <ul onClick={(e: any) => e.stopPropagation()} className="flex gap-2">
         <li className="w-8 h-8 bg-[#333] rounded-full">1</li>
         <li className="w-8 h-8 bg-[#333] rounded-full">2</li>
         <li className="w-8 h-8 bg-[#333] rounded-full">3</li>
+        <li className="relative">
+          <div
+            style={{ backgroundColor: colorPickerColor }}
+            onClick={() => {
+              setIsColorPickerOpen(true)
+              onSelectPartsColor(selectedPartIndex, colorPickerColor)
+            }}
+            className="w-8 h-8 rounded-full"
+          />
+          {isColorPickerOpen && (
+            <ColorPicker
+              colorPickerColor={colorPickerColor}
+              setColorPickerColor={setColorPickerColor}
+            />
+          )}
+        </li>
       </ul>
-
-      {/* Body parts 1 &&  */}
-      {/* Body parts 2 &&  */}
-      {/* Body parts 3 &&  */}
-      {/* Body parts 4 &&  */}
-      {/* Body parts 5 &&  */}
-      {/* Outsole &&  */}
-      {/* Select color */}
     </footer>
   )
 }

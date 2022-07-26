@@ -16,3 +16,8 @@ body {
   font-family: "Questrial";
   src: url("./fonts/Questrial-Regular.ttf");
 }
+
+.custom-color-picker .react-colorful {
+  width: 120px;
+  height: 120px;
+}

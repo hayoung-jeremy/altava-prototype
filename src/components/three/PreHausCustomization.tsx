@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useRef, useState } from "react"
 import { Canvas } from "@react-three/fiber"
 import {
-  Center,
   ContactShadows,
   Loader,
   OrbitControls,
@@ -10,6 +9,8 @@ import {
   Stats,
 } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
+import { proxy, useSnapshot } from "valtio"
+
 import {
   BootsBody,
   BootsOutsole1,
@@ -18,23 +19,27 @@ import {
   BootsOutsole4,
   PreHausSelectParts,
 } from "."
-import { selectedPartsName } from "@constants/preHaus"
+import { BootsColorState } from "@interface/bootsColorState"
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
-  const [OP1_BASE_01_color, setOP1_BASE_01_color] = useState("#fff")
-  const [OP1_BASE_02_color, setOP1_BASE_02_color] = useState("#fff")
-  const [OP1_BASE_03_color, setOP1_BASE_03_color] = useState("#fff")
-  const [OP1_BASE_04_color, setOP1_BASE_04_color] = useState("#fff")
-  const [OP1_BASE_05_color, setOP1_BASE_05_color] = useState("#fff")
-  const [outSoleColor, setOutSoleColor] = useState("#fff")
-  const [selectedPartIndex, setSelectedPartIndex] = useState(0)
+const state: BootsColorState = proxy({
+  current: null,
+  parts: {
+    Quarter: "#ffffff",
+    Vamp: "#ffffff",
+    Lace: "#ffffff",
+    BackCounter: "#ffffff",
+    PullLoops: "#ffffff",
+    Outsole: "#ffffff",
+  },
+})
 
+const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
+  const [selectedPartIndex, setSelectedPartIndex] = useState(0)
   const [outsoleOption, setOutsoleOption] = useState(0)
-  const [selectedOutsoleIndex, setSelectedOutsoleIndex] = useState(0)
 
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex flex-col">
@@ -48,41 +53,33 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
         <Canvas>
           <Suspense fallback={null}>
             <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
-              <BootsBody
-                scale={0.08}
-                OP1_BASE_01_color={OP1_BASE_01_color}
-                OP1_BASE_02_color={OP1_BASE_02_color}
-                OP1_BASE_03_color={OP1_BASE_03_color}
-                OP1_BASE_04_color={OP1_BASE_04_color}
-                OP1_BASE_05_color={OP1_BASE_05_color}
-                outSoleColor={outSoleColor}
-              />
+              <BootsBody scale={0.08} state={state} />
               {outsoleOption === 0 && (
                 <BootsOutsole1
                   scale={0.08}
                   position={[0, 0, 0]}
-                  outSoleColor={outSoleColor}
+                  state={state}
                 />
               )}
               {outsoleOption === 1 && (
                 <BootsOutsole2
                   scale={0.08}
                   position={[0, 0, 0]}
-                  outSoleColor={outSoleColor}
+                  state={state}
                 />
               )}
               {outsoleOption === 2 && (
                 <BootsOutsole3
                   scale={0.08}
                   position={[0, 0, 0]}
-                  outSoleColor={outSoleColor}
+                  state={state}
                 />
               )}
               {outsoleOption === 3 && (
                 <BootsOutsole4
                   scale={0.08}
                   position={[0, 0, 0]}
-                  outSoleColor={outSoleColor}
+                  state={state}
                 />
               )}
             </group>
@@ -90,11 +87,11 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
             </Center> */}
 
             <OrbitControls
-              // minPolarAngle={0}
-              // maxPolarAngle={Math.PI / 2.25}
+              makeDefault
               maxDistance={8}
               minDistance={3}
-              makeDefault
+              // minPolarAngle={0}
+              // maxPolarAngle={Math.PI / 2.25}
               // enableDamping
               // dampingFactor={0.5}
               // enablePan={false}
@@ -118,19 +115,9 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
           {/* <gridHelper /> */}
         </Canvas>
         <Loader />
-        {/* <PreHausOptionContainer
-          setOutsoleOption={setOutsoleOption}
-          setOP1_BASE_01_color={setOP1_BASE_01_color}
-          setOP1_BASE_02_color={setOP1_BASE_02_color}
-          setOP1_BASE_03_color={setOP1_BASE_03_color}
-          setOP1_BASE_04_color={setOP1_BASE_04_color}
-          setOP1_BASE_05_color={setOP1_BASE_05_color}
-          setOutSoleColor={setOutSoleColor}
-        /> */}
       </main>
 
       <PreHausSelectParts
-        selectedPartName={selectedPartsName[selectedPartIndex]}
         selectedPartIndex={selectedPartIndex}
         setSelectedPartIndex={setSelectedPartIndex}
         setOutsoleOption={setOutsoleOption}

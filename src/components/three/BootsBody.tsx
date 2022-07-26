@@ -6,6 +6,8 @@ import * as THREE from "three"
 import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
 import { GLTF } from "three-stdlib"
+import { useSnapshot } from "valtio"
+import { partsName } from "@constants/preHaus"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,55 +23,58 @@ export default function Model({ ...props }: any) {
   const { nodes, materials } = useGLTF(
     "assets/boots/NFT_BOOTS_BODY.glb"
   ) as GLTFResult
+
+  const snap = useSnapshot(props.state)
+
   return (
     <group ref={group} {...props} dispose={null}>
       {/* Quarter */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes.OP1_BASE_01.geometry}
-        material={materials.OP1_BASE_01}
+        geometry={nodes[partsName.Quarter].geometry}
+        material={materials[partsName.Quarter]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.OP1_BASE_01_color}
+        material-color={snap.parts.Quarter}
       />
 
       {/* Vamp */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes.OP1_BASE_02.geometry}
-        material={materials.OP1_BASE_02}
+        geometry={nodes[partsName.Vamp].geometry}
+        material={materials[partsName.Vamp]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Vamp}
       />
       {/* Lace */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes.OP1_BASE_03.geometry}
-        material={materials.OP1_BASE_03}
+        geometry={nodes[partsName.Lace].geometry}
+        material={materials[partsName.Lace]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.Lace}
       />
 
       {/* Back Counter */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes.OP1_BASE_04.geometry}
-        material={materials.OP1_BASE_04}
+        geometry={nodes[partsName.BackCounter].geometry}
+        material={materials[partsName.BackCounter]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.BackCounter}
       />
 
       {/* Pull loops */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes.OP1_BASE_05.geometry}
-        material={materials.OP1_BASE_05}
+        geometry={nodes[partsName.PullLoops].geometry}
+        material={materials[partsName.PullLoops]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={props.color}
+        material-color={snap.parts.PullLoops}
       />
     </group>
   )

@@ -1,34 +1,31 @@
 export const outsoleOptions = [
   {
     type: "outsole option 1",
-    isHovered: false,
   },
   {
     type: "outsole option 2",
-    isHovered: false,
   },
   {
     type: "outsole option 3",
-    isHovered: false,
   },
   {
     type: "outsole option 4",
-    isHovered: false,
-  },
-]
-
-export const availableColors = [
-  {
-    colorName: "red",
-    hexCode: "#ff0000",
   },
 ]
 
 export const selectedPartsName = [
-  "Upper",
-  "Tongue",
-  "Backtab",
+  "Quarter",
+  "Vamp",
   "Lace",
-  "Front",
+  "Back Counter",
+  "Pull Loops",
   "Outsole",
 ]
+
+export const partsName = {
+  Quarter: "OP1_BASE_01",
+  Vamp: "OP1_BASE_02",
+  Lace: "OP1_BASE_03",
+  BackCounter: "OP1_BASE_04",
+  PullLoops: "OP1_BASE_05",
+}
