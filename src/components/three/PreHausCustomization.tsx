@@ -9,7 +9,7 @@ import {
   Stats,
 } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
-import { proxy, useSnapshot } from "valtio"
+import { proxy } from "valtio"
 
 import {
   BootsBody,
@@ -105,7 +105,7 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
               // enablePan={false}
             />
             <color attach="background" args={["#e5e5e5"]} />
-            <fog attach="fog" args={["#e5e5e5", 2, 20]} />
+            <fog attach="fog" args={["#e5e5e5", 5, 20]} />
             <PerspectiveCamera fov={45} position={[1.5, 1.2, 6]} makeDefault />
             <ambientLight color="#faf7f7" intensity={0.12} />
             <pointLight intensity={0.4} position={[3, 1.8, -1.2]} />
