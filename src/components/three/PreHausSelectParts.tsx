@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
+import { useSnapshot } from "valtio"
+
 import { outsoleOptions, selectedPartsName } from "@constants/preHaus"
 import { ColorPicker } from "@components/ui"
-import { cls } from "@modules/utils"
+import { cls, generateRandomColor } from "@modules/utils"
 import { BootsColorState } from "@interface/bootsColorState"
 
 interface Props {
@@ -22,6 +24,10 @@ const PreHausSelectParts = ({
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false)
   const [colorPickerColor, setColorPickerColor] = useState("#aabbcc")
 
+  const snap = useSnapshot(state)
+
+  const randomArr = useRef<any[]>(generateRandomColor())
+
   const onClickToNextPart = () => {
     if (selectedPartIndex < 5) setSelectedPartIndex(selectedPartIndex + 1)
     else setSelectedPartIndex(0)
@@ -31,13 +37,17 @@ const PreHausSelectParts = ({
     else setSelectedPartIndex(selectedPartIndex - 1)
   }
 
+  useEffect(() => {
+    console.log("state.parts[snap.current!] : ", state.parts[snap.current!])
+  }, [])
+
   return (
     <footer
       onClick={() => setIsColorPickerOpen(false)}
       className={cls(
         "w-full h-[300px]",
         "flex flex-col items-center justify-start gap-5",
-        "bg-[#222]",
+        "bg-[#252525]",
         "text-white font-Questrial",
         "select-none",
         "px-6 py-5"
@@ -118,15 +128,25 @@ const PreHausSelectParts = ({
           })}
         </ul>
       )}
-      <ul onClick={(e: any) => e.stopPropagation()} className="flex gap-2">
-        <li className="w-8 h-8 bg-[#333] rounded-full">1</li>
-        <li className="w-8 h-8 bg-[#333] rounded-full">2</li>
-        <li className="w-8 h-8 bg-[#333] rounded-full">3</li>
+      <ul
+        onClick={(e: any) => e.stopPropagation()}
+        className="flex gap-3 items-center"
+      >
+        {randomArr.current.map((colorCode, index) => {
+          return (
+            <li
+              key={index}
+              onClick={() => (state.parts[snap.current!] = colorCode)}
+              style={{ backgroundColor: colorCode }}
+              className="w-8 h-8 rounded-full"
+            ></li>
+          )
+        })}
         <li className="relative">
           <div
             style={{ backgroundColor: colorPickerColor }}
             onClick={() => setIsColorPickerOpen(true)}
-            className="w-8 h-8 rounded-full"
+            className="w-10 h-10 rounded-full border-2 border-[#eee]"
           />
           {isColorPickerOpen && (
             <ColorPicker

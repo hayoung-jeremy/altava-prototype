@@ -19,8 +19,9 @@ import {
   BootsOutsole4,
   PreHausSelectParts,
 } from "."
-import { BootsColorState } from "@interface/bootsColorState"
 import { selectedPartsName } from "@constants/preHaus"
+import { BootsColorState } from "@interface/bootsColorState"
+import { cls } from "@modules/utils"
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -52,12 +53,30 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex flex-col">
       <main className="h-full">
-        <div
+        <button
           onClick={() => {
             setIsCustomModalOpen(false)
           }}
-          className="bg-red-50 w-10 h-10 absolute top-[60px] right-[60px] z-[1]"
-        ></div>
+          className={cls(
+            "flex items-center justify-center w-12 h-12 absolute top-[60px] right-[60px] z-[1] rounded-full transition-all",
+            "hover:bg-[rgba(0,0,0,0.1)]"
+          )}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
         <Canvas>
           <Suspense fallback={null}>
             <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
