@@ -26,6 +26,6 @@ export const partsName = {
   Quarter: "OP1_BASE_01",
   Vamp: "OP1_BASE_02",
   Lace: "OP1_BASE_03",
-  BackCounter: "OP1_BASE_04",
-  PullLoops: "OP1_BASE_05",
+  "Back Counter": "OP1_BASE_04",
+  "Pull Loops": "OP1_BASE_05",
 }

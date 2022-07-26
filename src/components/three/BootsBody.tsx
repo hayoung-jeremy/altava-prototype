@@ -61,20 +61,20 @@ export default function Model({ ...props }: any) {
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes[partsName.BackCounter].geometry}
-        material={materials[partsName.BackCounter]}
+        geometry={nodes[partsName["Back Counter"]].geometry}
+        material={materials[partsName["Back Counter"]]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.BackCounter}
+        material-color={snap.parts["Back Counter"]}
       />
 
       {/* Pull loops */}
       <mesh
         castShadow
         // receiveShadow
-        geometry={nodes[partsName.PullLoops].geometry}
-        material={materials[partsName.PullLoops]}
+        geometry={nodes[partsName["Pull Loops"]].geometry}
+        material={materials[partsName["Pull Loops"]]}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.PullLoops}
+        material-color={snap.parts["Pull Loops"]}
       />
     </group>
   )

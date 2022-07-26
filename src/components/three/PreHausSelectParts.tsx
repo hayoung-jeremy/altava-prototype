@@ -2,17 +2,20 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { outsoleOptions, selectedPartsName } from "@constants/preHaus"
 import { ColorPicker } from "@components/ui"
 import { cls } from "@modules/utils"
+import { BootsColorState } from "@interface/bootsColorState"
 
 interface Props {
   selectedPartIndex: number
   setSelectedPartIndex: React.Dispatch<React.SetStateAction<number>>
   setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
+  state: BootsColorState
 }
 
 const PreHausSelectParts = ({
   selectedPartIndex,
   setSelectedPartIndex,
   setOutsoleOption,
+  state,
 }: Props) => {
   const [selectedOutsoleIndex, setSelectedOutsoleIndex] = useState(0)
 
@@ -28,17 +31,6 @@ const PreHausSelectParts = ({
     else setSelectedPartIndex(selectedPartIndex - 1)
   }
 
-  const onSelectPartsColor = (
-    selectedPartIndex: number,
-    selectedColor: string
-  ) => {
-    // setColor((prev : []) => {
-    //     let aa : [] = prev
-    //     aa[idx] = selectedColor
-    //     return aa
-    // })
-  }
-
   return (
     <footer
       onClick={() => setIsColorPickerOpen(false)}
@@ -51,10 +43,13 @@ const PreHausSelectParts = ({
         "px-6 py-5"
       )}
     >
-      <nav className="flex gap-5">
+      <nav className="flex gap-6">
         <button
           onClick={onClickToPrevPart}
-          className="flex items-center justify-center w-12 h-12"
+          className={cls(
+            "flex items-center justify-center w-12 h-12 transition-all",
+            "hover:text-[#b2a1ff]"
+          )}
         >
           <svg
             className="w-6 h-6"
@@ -76,7 +71,10 @@ const PreHausSelectParts = ({
         </p>
         <button
           onClick={onClickToNextPart}
-          className="flex items-center justify-center w-12 h-12"
+          className={cls(
+            "flex items-center justify-center w-12 h-12 transition-all",
+            "hover:text-[#b2a1ff]"
+          )}
         >
           <svg
             className="w-6 h-6"
@@ -95,7 +93,7 @@ const PreHausSelectParts = ({
         </button>
       </nav>
       {selectedPartIndex === 5 && (
-        <ul className="flex gap-2">
+        <ul className="flex gap-2 mb-3">
           {outsoleOptions.map((item, index) => {
             return (
               <li
@@ -120,7 +118,6 @@ const PreHausSelectParts = ({
           })}
         </ul>
       )}
-      <p>Color Spectrum</p>
       <ul onClick={(e: any) => e.stopPropagation()} className="flex gap-2">
         <li className="w-8 h-8 bg-[#333] rounded-full">1</li>
         <li className="w-8 h-8 bg-[#333] rounded-full">2</li>
@@ -128,16 +125,14 @@ const PreHausSelectParts = ({
         <li className="relative">
           <div
             style={{ backgroundColor: colorPickerColor }}
-            onClick={() => {
-              setIsColorPickerOpen(true)
-              onSelectPartsColor(selectedPartIndex, colorPickerColor)
-            }}
+            onClick={() => setIsColorPickerOpen(true)}
             className="w-8 h-8 rounded-full"
           />
           {isColorPickerOpen && (
             <ColorPicker
               colorPickerColor={colorPickerColor}
               setColorPickerColor={setColorPickerColor}
+              state={state}
             />
           )}
         </li>

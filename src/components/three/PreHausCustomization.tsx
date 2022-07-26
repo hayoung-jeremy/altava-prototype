@@ -20,6 +20,7 @@ import {
   PreHausSelectParts,
 } from "."
 import { BootsColorState } from "@interface/bootsColorState"
+import { selectedPartsName } from "@constants/preHaus"
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -40,6 +41,13 @@ const state: BootsColorState = proxy({
 const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
   const [selectedPartIndex, setSelectedPartIndex] = useState(0)
   const [outsoleOption, setOutsoleOption] = useState(0)
+
+  useEffect(() => {
+    state.current = selectedPartsName[selectedPartIndex]
+
+    console.log("selectedPartIndex : ", selectedPartIndex)
+    console.log("state.current : ", state.current)
+  }, [selectedPartIndex])
 
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex flex-col">
@@ -121,6 +129,7 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
         selectedPartIndex={selectedPartIndex}
         setSelectedPartIndex={setSelectedPartIndex}
         setOutsoleOption={setOutsoleOption}
+        state={state}
       />
     </div>
   )
