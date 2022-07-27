@@ -13,13 +13,13 @@ const VideoContainer = ({ title, content, videoUrl, ...props }: any) => {
     Object.assign(document.createElement("video"), {
       src: videoUrl,
       crossOrigin: "Anonymous",
-      loop: false,
+      loop: true,
       muted: true,
     })
   )
-  // useEffect(() => {
-  //   video.play()
-  // }, [video])
+  useEffect(() => {
+    video.play()
+  }, [video])
   return (
     <Suspense fallback={null}>
       <mesh {...props} receiveShadow castShadow raycast={() => null}>

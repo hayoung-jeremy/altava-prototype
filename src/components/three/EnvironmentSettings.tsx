@@ -15,14 +15,14 @@ const EnvironmentSettings = () => {
 
   return (
     <Suspense fallback={null}>
-      {/* <Stars
+      <Stars
         radius={100}
         depth={20}
         count={1000}
         factor={4}
         saturation={0}
         fade
-      /> */}
+      />
       {/* <Sparkles position={[0, 0, -2]} /> */}
       <ambientLight intensity={0.3} />
 
