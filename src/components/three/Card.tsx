@@ -78,7 +78,7 @@ const Card = ({
             >
               <p
                 className={cls(
-                  "flex gap-3",
+                  "flex gap-3 select-none",
                   isHovered ? "text-[#b2a1ff]" : "text-white",
                   "text-left font-Play",
                   "bg-[rgba(0,0,0,.6)] px-5 py-2 rounded"
@@ -112,7 +112,7 @@ const Card = ({
               href={sns}
               target={"_blank"}
               className={cls(
-                "flex items-center justify-center",
+                "flex items-center justify-center select-none",
                 "text-[#b2a1ff]",
                 "text-left font-Play",
                 "bg-[rgba(0,0,0,.5)] p-2 rounded border border-transparent",

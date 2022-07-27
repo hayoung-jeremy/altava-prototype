@@ -13,7 +13,7 @@ const Project = () => {
         <Html scale={0.15} transform position={[-1.5, 1, 0]}>
           <p
             className={cls(
-              "text-gray-100 text-3xl w-[200px] font-Play relative",
+              "text-gray-100 text-3xl w-[200px] font-Play relative select-none",
               "after:w-[200px] after:h-[1px] after:bg-[#b2a1ff] after:absolute after:bottom-[-16px] after:left-[0px]"
             )}
           >

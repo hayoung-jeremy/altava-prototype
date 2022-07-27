@@ -75,10 +75,7 @@ const Player = () => {
   return (
     <>
       <mesh ref={ref}></mesh>
-      <PointerLockControls
-      // onLock={() => console.log("Controls locked")}
-      // onUnlock={() => console.log("Controls unlocked")+}
-      />
+      
       {/* {!isCustomModalOpen && (
       )} */}
     </>

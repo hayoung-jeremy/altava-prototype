@@ -26,8 +26,8 @@ const PreHaus = ({ setIsCustomModalOpen }: Props) => {
         rotation={[0, -degToRad(90), 0]}
         // position={[0, 0.7, -2]}
       >
-        <Html scale={0.15} transform occlude position={[-1, 0.2, 0]}>
-          <div className="flex flex-col gap-4">
+        <Html scale={0.15} transform position={[-1, 0.2, 0]}>
+          <div className="flex flex-col gap-4 select-none">
             <div className="flex flex-col gap-2">
               <p
                 className={cls(
@@ -68,8 +68,6 @@ const PreHaus = ({ setIsCustomModalOpen }: Props) => {
             <BootsOutsole4 scale={0.02} position={[0, 0, 0]} />
           )}
         </group>
-
-        <Html transform position={[0.5, 0.1, 0]} scale={0.1}></Html>
       </group>
     </Suspense>
   )

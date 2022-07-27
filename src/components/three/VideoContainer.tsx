@@ -43,7 +43,7 @@ const VideoContainer = ({ title, content, videoUrl, ...props }: any) => {
           <meshStandardMaterial side={THREE.BackSide} color="#7f6d94" />
         </mesh>
         <Html scale={0.15} transform position={[1.2, 0, 0]}>
-          <div className="max-w-[200px] text-white font-Play">
+          <div className="max-w-[200px] text-white font-Play select-none">
             <p className="text-lg mb-2 text-[#b2a1ff]">{title}</p>
             <p className="font-Questrial text-sm">{content}</p>
           </div>
