@@ -16,7 +16,7 @@ interface Props extends THREE.Mesh {
 
 const Card = ({
   color = "#222",
-  imgURL,
+  imgURL = "",
   personName,
   managingPosition,
   sns,
@@ -24,6 +24,7 @@ const Card = ({
 }: any) => {
   const ref = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isHoveredOnLink, setIsHoveredOnLink] = useState(false)
 
   return (
     <Suspense fallback={null}>
@@ -53,6 +54,7 @@ const Card = ({
           castShadow
         >
           <meshStandardMaterial
+            attach="material"
             side={THREE.FrontSide}
             color={isHovered ? "#4b4275" : color}
           />
@@ -66,9 +68,14 @@ const Card = ({
           rotation={[0, Math.PI, 0]}
           raycast={() => null}
         />
-        <group raycast={() => null}>
+        <group>
           {isHovered && (
-            <Html scale={0.1} transform position={[0, 0.15, 0]}>
+            <Html
+              scale={0.1}
+              transform
+              position={[0, 0.15, 0]}
+              raycast={() => null}
+            >
               <p
                 className={cls(
                   "flex gap-3",
@@ -82,7 +89,25 @@ const Card = ({
               </p>
             </Html>
           )}
-          <Html scale={0.1} occlude transform position={[-0.35, 0.4, 0.02]}>
+          {/* <group
+            scale={0.1}
+            position={[-0.35, 0.4, 0.04]}
+            // onPointerOver={e => {
+            //   console.log("SNS hovered")
+            //   setIsHoveredOnLink(true)
+            //   e.stopPropagation()
+            // }}
+            // onPointerOut={() => {
+            //   setIsHoveredOnLink(false)
+            // }}
+            // onClick={() => window.open(sns)}
+          >
+            <mesh>
+              <meshStandardMaterial attach="material" transparent opacity={0} />
+              <planeBufferGeometry attach="geometry" args={[1, 1]} />
+            </mesh>
+          </group> */}
+          <Html scale={0.1} transform position={[-0.35, 0.4, 0.04]}>
             <a
               href={sns}
               target={"_blank"}
