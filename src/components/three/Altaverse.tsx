@@ -20,8 +20,8 @@ interface Props {
 const Altaverse = ({ isCustomModalOpen, setIsCustomModalOpen }: Props) => {
   return (
     <Suspense fallback={null}>
-      <Physics gravity={[0, -30, 0]}>
-        <Player isCustomModalOpen={isCustomModalOpen} />
+      <Physics gravity={[0, -30, 0]} broadphase="SAP">
+        <Player />
         <Ground />
         {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
         {/* <Debug scale={1.1} color="black"></Debug> */}

@@ -5,26 +5,27 @@ import { outsoleOptions, selectedPartsName } from "@constants/preHaus"
 import { ColorPicker } from "@components/ui"
 import { cls, generateRandomColor } from "@modules/utils"
 import { BootsColorState } from "@interface/bootsColorState"
+import { bootsColorState } from "./PreHausCustomization"
 
 interface Props {
   selectedPartIndex: number
   setSelectedPartIndex: React.Dispatch<React.SetStateAction<number>>
   setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
-  state: BootsColorState
+  //   state: BootsColorState
 }
 
 const PreHausSelectParts = ({
   selectedPartIndex,
   setSelectedPartIndex,
   setOutsoleOption,
-  state,
-}: Props) => {
+}: //   state,
+Props) => {
   const [selectedOutsoleIndex, setSelectedOutsoleIndex] = useState(0)
 
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false)
   const [colorPickerColor, setColorPickerColor] = useState("#aabbcc")
 
-  const snap = useSnapshot(state)
+  const snap = useSnapshot(bootsColorState)
 
   const randomArr = useRef<any[]>(generateRandomColor())
 
@@ -38,7 +39,10 @@ const PreHausSelectParts = ({
   }
 
   useEffect(() => {
-    console.log("state.parts[snap.current!] : ", state.parts[snap.current!])
+    console.log(
+      "bootsColorState.parts[snap.current!] : ",
+      bootsColorState.parts[snap.current!]
+    )
   }, [])
 
   return (
@@ -136,7 +140,7 @@ const PreHausSelectParts = ({
           return (
             <li
               key={index}
-              onClick={() => (state.parts[snap.current!] = colorCode)}
+              onClick={() => (bootsColorState.parts[snap.current!] = colorCode)}
               style={{ backgroundColor: colorCode }}
               className="w-8 h-8 rounded-full"
             ></li>
@@ -149,11 +153,7 @@ const PreHausSelectParts = ({
             className="w-10 h-10 rounded-full border-2 border-[#eee]"
           />
           {isColorPickerOpen && (
-            <ColorPicker
-              colorPickerColor={colorPickerColor}
-              setColorPickerColor={setColorPickerColor}
-              state={state}
-            />
+            <ColorPicker setColorPickerColor={setColorPickerColor} />
           )}
         </li>
       </ul>

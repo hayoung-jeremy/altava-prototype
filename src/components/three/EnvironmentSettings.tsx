@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { Suspense, useRef } from "react"
 import * as THREE from "three"
 import { ContactShadows, Sparkles, Stars, useHelper } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
@@ -14,16 +14,16 @@ const EnvironmentSettings = () => {
   useHelper(hausPointLight, THREE.PointLightHelper, 1, "cyan")
 
   return (
-    <>
-      <Stars
+    <Suspense fallback={null}>
+      {/* <Stars
         radius={100}
-        depth={50}
-        count={5000}
+        depth={20}
+        count={1000}
         factor={4}
         saturation={0}
         fade
-      />
-      <Sparkles position={[0, 0, -2]} />
+      /> */}
+      {/* <Sparkles position={[0, 0, -2]} /> */}
       <ambientLight intensity={0.3} />
 
       {/* managmentSpotLight */}
@@ -47,6 +47,7 @@ const EnvironmentSettings = () => {
       />
 
       <ContactShadows
+        frames={1}
         smooth
         position={[0, -0.8, 0]}
         opacity={1}
@@ -57,7 +58,7 @@ const EnvironmentSettings = () => {
       />
       <color attach="background" args={["#202020"]} />
       <fog attach="fog" args={["#202020", 5, 20]} />
-    </>
+    </Suspense>
   )
 }
 

@@ -27,7 +27,7 @@ interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const state: BootsColorState = proxy({
+export const bootsColorState: BootsColorState = proxy({
   current: null,
   parts: {
     Quarter: "#ffffff",
@@ -44,10 +44,10 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
   const [outsoleOption, setOutsoleOption] = useState(0)
 
   useEffect(() => {
-    state.current = selectedPartsName[selectedPartIndex]
+    bootsColorState.current = selectedPartsName[selectedPartIndex]
 
     console.log("selectedPartIndex : ", selectedPartIndex)
-    console.log("state.current : ", state.current)
+    console.log("bootsColorState.current : ", bootsColorState.current)
   }, [selectedPartIndex])
 
   return (
@@ -77,36 +77,36 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
             />
           </svg>
         </button>
-        <Canvas>
+        <Canvas frameloop="demand">
           <Suspense fallback={null}>
             <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
-              <BootsBody scale={0.08} state={state} />
+              <BootsBody scale={0.08} />
               {outsoleOption === 0 && (
                 <BootsOutsole1
                   scale={0.08}
                   position={[0, 0, 0]}
-                  state={state}
+                  // state={state}
                 />
               )}
               {outsoleOption === 1 && (
                 <BootsOutsole2
                   scale={0.08}
                   position={[0, 0, 0]}
-                  state={state}
+                  // state={state}
                 />
               )}
               {outsoleOption === 2 && (
                 <BootsOutsole3
                   scale={0.08}
                   position={[0, 0, 0]}
-                  state={state}
+                  // state={state}
                 />
               )}
               {outsoleOption === 3 && (
                 <BootsOutsole4
                   scale={0.08}
                   position={[0, 0, 0]}
-                  state={state}
+                  // state={state}
                 />
               )}
             </group>
@@ -148,7 +148,7 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
         selectedPartIndex={selectedPartIndex}
         setSelectedPartIndex={setSelectedPartIndex}
         setOutsoleOption={setOutsoleOption}
-        state={state}
+        // state={state}
       />
     </div>
   )

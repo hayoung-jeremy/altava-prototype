@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { usePlane } from "@react-three/cannon"
 import { useLoader } from "@react-three/fiber"
 import { MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three"
@@ -14,15 +14,17 @@ const Ground = (props: any) => {
   texture.repeat.set(10, 10)
 
   return (
-    <mesh ref={ref} receiveShadow {...props}>
-      <planeBufferGeometry attach="geometry" args={[500, 500]} />
-      <meshStandardMaterial
-        color={"#ccc"}
-        map={texture}
-        roughness={0.4}
-        metalness={0.8}
-      />
-    </mesh>
+    <Suspense fallback={null}>
+      <mesh ref={ref} receiveShadow {...props} raycast={() => null}>
+        <planeBufferGeometry attach="geometry" args={[50, 50]} />
+        <meshStandardMaterial
+          color={"#ccc"}
+          map={texture}
+          roughness={0.4}
+          metalness={0.8}
+        />
+      </mesh>
+    </Suspense>
   )
 }
 

@@ -43,6 +43,7 @@ const Card = ({
             opacity={0.99999}
             transparent
             position={[0, 1, 0]}
+            raycast={() => null}
           />
         )}
         <RoundedBox
@@ -63,8 +64,9 @@ const Card = ({
           transparent
           position={[0, 1, -0.02]}
           rotation={[0, Math.PI, 0]}
+          raycast={() => null}
         />
-        <group>
+        <group raycast={() => null}>
           {isHovered && (
             <Html scale={0.1} transform position={[0, 0.15, 0]}>
               <p

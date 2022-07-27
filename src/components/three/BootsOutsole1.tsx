@@ -7,6 +7,7 @@ import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
 import { GLTF } from "three-stdlib"
 import { useSnapshot } from "valtio"
+import { bootsColorState } from "./PreHausCustomization"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -23,7 +24,7 @@ export default function Model({ ...props }: any) {
     "assets/boots/NFT_BOOTS_OP1.glb"
   ) as GLTFResult
 
-  const snap = useSnapshot(props.state)
+  const snap = useSnapshot(bootsColorState)
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -33,7 +34,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_01.geometry}
         material={materials.OP1_OUTSOLE_01}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.Outsole}
+        material-color={snap.parts.Outsole ?? "#fff"}
       />
       <mesh
         castShadow
@@ -41,7 +42,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_02.geometry}
         material={materials.OP1_OUTSOLE_02}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.Outsole}
+        material-color={snap.parts.Outsole ?? "#fff"}
       />
       <mesh
         castShadow
@@ -49,7 +50,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_03.geometry}
         material={materials.OP1_OUTSOLE_03}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.Outsole}
+        material-color={snap.parts.Outsole ?? "#fff"}
       />
       <mesh
         castShadow
@@ -57,7 +58,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_04.geometry}
         material={materials.OP1_OUTSOLE_04}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.Outsole}
+        material-color={snap.parts.Outsole ?? "#fff"}
       />
       <mesh
         castShadow
@@ -65,7 +66,7 @@ export default function Model({ ...props }: any) {
         geometry={nodes.OP1_OUTSOLE_05.geometry}
         material={materials.OP1_OUTSOLE_05}
         rotation={[-Math.PI / 2, 0, 0]}
-        material-color={snap.parts.Outsole}
+        material-color={snap.parts.Outsole ?? "#fff"}
       />
     </group>
   )

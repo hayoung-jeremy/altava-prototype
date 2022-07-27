@@ -8,13 +8,8 @@ import usePlayerControls from "@modules/hooks/usePlayerControls"
 
 const SPEED = 8
 
-interface Props {
-  isCustomModalOpen: boolean
-}
-
-const Player = ({ isCustomModalOpen }: Props) => {
+const Player = () => {
   const { camera } = useThree()
-  const controller = useRef<any>(null)
 
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
     usePlayerControls()
@@ -80,12 +75,12 @@ const Player = ({ isCustomModalOpen }: Props) => {
   return (
     <>
       <mesh ref={ref}></mesh>
-      {!isCustomModalOpen && (
-        <PointerLockControls
-        // onLock={() => console.log("Controls locked")}
-        // onUnlock={() => console.log("Controls unlocked")+}
-        />
-      )}
+      <PointerLockControls
+      // onLock={() => console.log("Controls locked")}
+      // onUnlock={() => console.log("Controls unlocked")+}
+      />
+      {/* {!isCustomModalOpen && (
+      )} */}
     </>
   )
 }
