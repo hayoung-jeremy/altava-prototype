@@ -15,31 +15,28 @@ function App() {
     <div className="w-screen h-screen">
       {!isCustomModalOpen && (
         <>
-          <Suspense fallback={null}>
-            <Canvas
-              shadows
-              gl={{
-                alpha: false,
-                antialias: true,
-                outputEncoding: THREE.sRGBEncoding,
-              }}
-              dpr={[1, 2]}
-              camera={{ fov: 70 }}
-              frameloop="demand"
-            >
-              <Altaverse
-                isCustomModalOpen={isCustomModalOpen}
-                setIsCustomModalOpen={setIsCustomModalOpen}
-                isGuestBookOpen={isGuestBookOpen}
-                setIsGuestBookOpen={setIsGuestBookOpen}
-              />
+          <Canvas
+            shadows
+            gl={{
+              alpha: false,
+              antialias: true,
+              outputEncoding: THREE.sRGBEncoding,
+            }}
+            dpr={[1, 2]}
+            camera={{ fov: 70 }}
+            frameloop="demand"
+          >
+            <Altaverse
+              isCustomModalOpen={isCustomModalOpen}
+              setIsCustomModalOpen={setIsCustomModalOpen}
+              isGuestBookOpen={isGuestBookOpen}
+              setIsGuestBookOpen={setIsGuestBookOpen}
+            />
 
-              {/* helpers */}
-              <Stats />
-              {/* <gridHelper args={[20, 20]} /> */}
-            </Canvas>
-          </Suspense>
-          <Loader />
+            {/* helpers */}
+            <Stats />
+            {/* <gridHelper args={[20, 20]} /> */}
+          </Canvas>
         </>
       )}
 
