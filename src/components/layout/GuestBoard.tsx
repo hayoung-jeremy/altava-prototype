@@ -1,19 +1,25 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { Html, RoundedBox } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
-import { cls } from "@modules/utils"
-import { useThree } from "@react-three/fiber"
-import { useEffect } from "react"
+import axios from "axios"
+import { ChangeTimeFormat, cls } from "@modules/utils"
 
 interface Props {
   setIsGuestBookOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const GuestBoard = ({ setIsGuestBookOpen }: Props) => {
-  const { camera, controls, gl } = useThree()
+  const [guestBookList, setGuestBookList] = useState([])
+
+  const getGuestBookList = async () => {
+    axios.get("http://localhost:9999/guestBook").then(res => {
+      console.log(res.data)
+      setGuestBookList(res.data.reverse())
+    })
+  }
 
   useEffect(() => {
-    console.log("guest board 에서 호출한 gl.domElement :", gl.domElement)
+    getGuestBookList()
   }, [])
 
   return (
@@ -52,15 +58,30 @@ const GuestBoard = ({ setIsGuestBookOpen }: Props) => {
         </Html>
         <group raycast={() => null}>
           <RoundedBox args={[1.45, 1, 0.1]} scale={[1, 1, 0.05]} castShadow>
-            <meshStandardMaterial color="red" />
+            <meshStandardMaterial color="#b098ff" transparent opacity={0.2} />
           </RoundedBox>
-          <Html occlude scale={0.1} transform position={[0, 0, 0.02]}>
-            <ul className="w-[528px] h-[360px] grid grid-cols-3 gap-3 select-none items-start bg-slate-100">
-              <li className="rounded-lg bg-red-200">
-                <p>Name</p>
-                <p>Contents</p>
-                <p>date</p>
-              </li>
+          <Html occlude scale={0.06} transform position={[0, 0, 0.02]}>
+            <ul className="gl-scrollbar w-[900px] h-[600px] grid grid-cols-3 gap-3 select-none items-start overflow-y-scroll">
+              {guestBookList.length > 0 &&
+                guestBookList.map((item: any, index: number) => {
+                  return (
+                    <li
+                      key={index}
+                      className="flex flex-col gap-3 rounded-lg bg-[rgba(255,255,255,0.05)] backdrop-blur-sm p-3 font-Questrial h-[240px]"
+                    >
+                      <p className="flex gap-3 items-center justify-between">
+                        <span className="text-lg text-[#b2a1ff]">
+                          {item.name}{" "}
+                        </span>
+                        <span className="text-xs text-[#aaa]">
+                          {ChangeTimeFormat(item.created_at)}
+                        </span>
+                      </p>
+                      <p className="text-[#eee]">{item.comment}</p>
+                      <p></p>
+                    </li>
+                  )
+                })}
             </ul>
           </Html>
         </group>
