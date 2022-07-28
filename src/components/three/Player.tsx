@@ -8,7 +8,12 @@ import usePlayerControls from "@modules/hooks/usePlayerControls"
 
 const SPEED = 8
 
-const Player = () => {
+interface Props {
+  isCustomModalOpen: boolean
+  isGuestBookOpen: boolean
+}
+
+const Player = ({ isCustomModalOpen, isGuestBookOpen }: Props) => {
   const { camera } = useThree()
 
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
@@ -27,26 +32,28 @@ const Player = () => {
 
   useFrame(() => {
     // camera.position.copy(ref.current.position)
-    ref.current.getWorldPosition(camera.position)
+    if (!isCustomModalOpen && !isGuestBookOpen) {
+      ref.current.getWorldPosition(camera.position)
 
-    const direction = new Vector3()
-    const frontVector = new Vector3(
-      0,
-      0,
-      Number(moveBackward) - Number(moveForward)
-    )
-    const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0)
+      const direction = new Vector3()
+      const frontVector = new Vector3(
+        0,
+        0,
+        Number(moveBackward) - Number(moveForward)
+      )
+      const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0)
 
-    direction
-      .subVectors(frontVector, sideVector)
-      .normalize()
-      .multiplyScalar(SPEED)
-      .applyEuler(camera.rotation)
+      direction
+        .subVectors(frontVector, sideVector)
+        .normalize()
+        .multiplyScalar(SPEED)
+        .applyEuler(camera.rotation)
 
-    api.velocity.set(direction.x, velocity.current[1], direction.z)
+      api.velocity.set(direction.x, velocity.current[1], direction.z)
 
-    if (jump && Math.abs(Number(velocity.current[1].toFixed(2))) < 0.05) {
-      api.velocity.set(velocity.current[0], 10, velocity.current[2])
+      if (jump && Math.abs(Number(velocity.current[1].toFixed(2))) < 0.05) {
+        api.velocity.set(velocity.current[0], 10, velocity.current[2])
+      }
     }
   })
 
@@ -75,7 +82,7 @@ const Player = () => {
   return (
     <>
       <mesh ref={ref}></mesh>
-      
+
       {/* {!isCustomModalOpen && (
       )} */}
     </>
