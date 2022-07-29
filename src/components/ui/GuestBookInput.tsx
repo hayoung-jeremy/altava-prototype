@@ -31,7 +31,7 @@ const GuestBookInput = ({
   const onSubmit = async (data: FormData) => {
     console.log(data)
     await axios
-      .post("http://localhost:9999/guestBook", {
+      .post("http://10.190.141.51:9999/guestBook", {
         name: data.name,
         comment: data.comment,
       })

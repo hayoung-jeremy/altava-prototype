@@ -6,7 +6,7 @@ export default function useGuestBook() {
   const [guestBookList, setGuestBookList] = useState([])
 
   const [getGuestBook, { Data, Loading, Error }] = useMutation(
-    "http://localhost:9999/guestBook"
+    "http://10.190.141.51:9999/guestBook"
   )
 
   useEffect(() => {

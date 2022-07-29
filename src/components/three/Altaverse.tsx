@@ -12,6 +12,7 @@ import {
   WelcomText,
 } from "@components/three"
 import { GuestBoard, Management, PreHaus, Project } from "@components/layout"
+import { degToRad } from "three/src/math/MathUtils"
 
 interface Props {
   isCustomModalOpen: boolean
@@ -53,7 +54,11 @@ const Altaverse = ({
           isGuestBookOpen={isGuestBookOpen}
           isHelperGuideOpen={isHelperGuideOpen}
         />
-        {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
+        <Avatar
+          scale={0.007}
+          position={[1, 0, -2]}
+          rotation={[0, -degToRad(40), 0]}
+        />
         {/* <Debug scale={1.1} color="black"></Debug> */}
         <WelcomText />
         {!isCustomModalOpen && !isGuestBookOpen && !isHelperGuideOpen && (
