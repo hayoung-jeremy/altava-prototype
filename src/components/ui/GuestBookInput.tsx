@@ -39,6 +39,7 @@ const GuestBookInput = ({
         console.log("write  완료")
         getGuestBook({})
       })
+      .then(() => setIsGuestBookOpen(false))
   }
 
   return (
