@@ -5,15 +5,21 @@ import { useSphere } from "@react-three/cannon"
 import { Vector3 } from "three"
 
 import usePlayerControls from "@modules/hooks/usePlayerControls"
+import { degToRad } from "three/src/math/MathUtils"
 
 const SPEED = 8
 
 interface Props {
   isCustomModalOpen: boolean
   isGuestBookOpen: boolean
+  isHelperGuideOpen: boolean
 }
 
-const Player = ({ isCustomModalOpen, isGuestBookOpen }: Props) => {
+const Player = ({
+  isCustomModalOpen,
+  isGuestBookOpen,
+  isHelperGuideOpen,
+}: Props) => {
   const { camera } = useThree()
 
   const { moveForward, moveBackward, moveLeft, moveRight, jump } =
@@ -32,7 +38,7 @@ const Player = ({ isCustomModalOpen, isGuestBookOpen }: Props) => {
 
   useFrame(() => {
     // camera.position.copy(ref.current.position)
-    if (!isCustomModalOpen && !isGuestBookOpen) {
+    if (!isCustomModalOpen && !isGuestBookOpen && !isHelperGuideOpen) {
       ref.current.getWorldPosition(camera.position)
 
       const direction = new Vector3()

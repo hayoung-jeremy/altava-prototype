@@ -74,29 +74,30 @@ const GuestBookInput = ({
               type="text"
               placeholder="name"
               className={cls(
-                "outline-none px-3 py-2 bg-[rgba(255,255,255,0.1)] border text-[#b2a1ff] ",
+                "outline-none px-3 py-2 bg-[rgba(255,255,255,0.1)] border text-[#b2a1ff] rounded",
                 errors.name
                   ? "border-[#ff9898] focus:border-[#ff9898]"
                   : "border-[#b2a1ff22] focus:border-[#b2a1ff88]"
               )}
             />
             <p className="text-sm h-5 text-[#ff9898]">
-              {errors.name?.type === "required" && "First name is required"}
+              {errors.name?.type === "required" && "name is required"}
             </p>
           </div>
           <div className="flex flex-col gap-1">
             <textarea
               {...register("comment", { required: true, maxLength: 200 })}
-              placeholder="leave a comment"
+              placeholder="comment"
               className={cls(
-                "gl-scrollbar h-[160px] outline-none px-3 py-2 bg-[rgba(255,255,255,0.1)] border text-[#b2a1ff]",
+                "gl-scrollbar h-[160px] outline-none px-3 py-2 bg-[rgba(255,255,255,0.1)] border text-[#b2a1ff] rounded",
                 errors.comment
                   ? "border-[#ff9898] focus:border-[#ff9898]"
                   : "border-[#b2a1ff22] focus:border-[#b2a1ff88]"
               )}
             ></textarea>
             <p className="text-sm h-5 text-[#ff9898]">
-              {errors.comment?.type === "required" && "First name is required"}
+              {errors.comment?.type === "required" &&
+                "cannot post an empty comment"}
             </p>
           </div>
           <button

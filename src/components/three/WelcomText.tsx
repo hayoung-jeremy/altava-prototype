@@ -15,7 +15,7 @@ const WelcomText = () => {
           className={cls(
             "flex flex-col items-center justify-center font-Questrial text-gray-200 text-center select-none relative",
             "p-8 rounded-lg",
-            "bg-[rgba(0,0,0,0.8)] border-[rgba(255,255,255,0.2)] border"
+            "bg-[rgba(0,0,0,0.8)]"
           )}
         >
           <p className="mb-4">

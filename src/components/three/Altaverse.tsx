@@ -20,6 +20,7 @@ interface Props {
   setIsGuestBookOpen: React.Dispatch<React.SetStateAction<boolean>>
   getGuestBook: (data: any) => void
   guestBookList: any
+  isHelperGuideOpen: boolean
 }
 
 const Altaverse = ({
@@ -29,6 +30,7 @@ const Altaverse = ({
   setIsGuestBookOpen,
   getGuestBook,
   guestBookList,
+  isHelperGuideOpen,
 }: Props) => {
   const pointerLockControlRef = useRef<any>(null)
 
@@ -45,11 +47,12 @@ const Altaverse = ({
         <Player
           isCustomModalOpen={isCustomModalOpen}
           isGuestBookOpen={isGuestBookOpen}
+          isHelperGuideOpen={isHelperGuideOpen}
         />
         {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
         {/* <Debug scale={1.1} color="black"></Debug> */}
         <WelcomText />
-        {!isCustomModalOpen && !isGuestBookOpen && (
+        {!isCustomModalOpen && !isGuestBookOpen && !isHelperGuideOpen && (
           <PointerLockControls
             ref={pointerLockControlRef}
             // selector="myControl"

@@ -4,11 +4,12 @@ import { Canvas } from "@react-three/fiber"
 import { Loader, PointerLockControls, Stats } from "@react-three/drei"
 
 import { Altaverse, PreHausCustomization } from "@components/three"
-import { EnterPopUp, GuestBookInput, MousePointer } from "@components/ui"
+import { GuestBookInput, HelperGuide, MousePointer } from "@components/ui"
 import useGuestBook from "@modules/hooks/useGuestBook"
 
 function App() {
   const [ready, setReady] = useState(false)
+  const [isHelperGuideOpen, setIsHelperGuideOpen] = useState(true)
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false)
   const [isGuestBookOpen, setIsGuestBookOpen] = useState(false)
   const { getGuestBook, guestBookList } = useGuestBook()
@@ -33,6 +34,7 @@ function App() {
               setIsCustomModalOpen={setIsCustomModalOpen}
               isGuestBookOpen={isGuestBookOpen}
               setIsGuestBookOpen={setIsGuestBookOpen}
+              isHelperGuideOpen={isHelperGuideOpen}
               getGuestBook={getGuestBook}
               guestBookList={guestBookList}
             />
@@ -46,7 +48,9 @@ function App() {
 
       {/* UI */}
       <MousePointer />
-      {!ready && <EnterPopUp setReady={setReady} />}
+      {isHelperGuideOpen && (
+        <HelperGuide setIsHelperGuideOpen={setIsHelperGuideOpen} />
+      )}
       {isCustomModalOpen && (
         <PreHausCustomization setIsCustomModalOpen={setIsCustomModalOpen} />
       )}
