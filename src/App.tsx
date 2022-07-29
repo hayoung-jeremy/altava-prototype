@@ -5,14 +5,16 @@ import { Loader, PointerLockControls, Stats } from "@react-three/drei"
 
 import { Altaverse, PreHausCustomization } from "@components/three"
 import { EnterPopUp, GuestBookInput, MousePointer } from "@components/ui"
+import useGuestBook from "@modules/hooks/useGuestBook"
 
 function App() {
   const [ready, setReady] = useState(false)
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false)
   const [isGuestBookOpen, setIsGuestBookOpen] = useState(false)
+  const { getGuestBook, guestBookList } = useGuestBook()
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-screen h-screen overflow-hidden">
       {!isCustomModalOpen && (
         <>
           <Canvas
@@ -31,6 +33,8 @@ function App() {
               setIsCustomModalOpen={setIsCustomModalOpen}
               isGuestBookOpen={isGuestBookOpen}
               setIsGuestBookOpen={setIsGuestBookOpen}
+              getGuestBook={getGuestBook}
+              guestBookList={guestBookList}
             />
 
             {/* helpers */}
@@ -42,12 +46,16 @@ function App() {
 
       {/* UI */}
       <MousePointer />
-      {/* {!ready && <EnterPopUp setReady={setReady} />} */}
+      {!ready && <EnterPopUp setReady={setReady} />}
       {isCustomModalOpen && (
         <PreHausCustomization setIsCustomModalOpen={setIsCustomModalOpen} />
       )}
       {isGuestBookOpen && (
-        <GuestBookInput setIsGuestBookOpen={setIsGuestBookOpen} />
+        <GuestBookInput
+          setIsGuestBookOpen={setIsGuestBookOpen}
+          getGuestBook={getGuestBook}
+          guestBookList={guestBookList}
+        />
       )}
     </div>
   )

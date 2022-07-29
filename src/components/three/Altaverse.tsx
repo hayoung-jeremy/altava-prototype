@@ -18,6 +18,8 @@ interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
   isGuestBookOpen: boolean
   setIsGuestBookOpen: React.Dispatch<React.SetStateAction<boolean>>
+  getGuestBook: (data: any) => void
+  guestBookList: any
 }
 
 const Altaverse = ({
@@ -25,6 +27,8 @@ const Altaverse = ({
   setIsCustomModalOpen,
   isGuestBookOpen,
   setIsGuestBookOpen,
+  getGuestBook,
+  guestBookList,
 }: Props) => {
   const pointerLockControlRef = useRef<any>(null)
 
@@ -37,8 +41,11 @@ const Altaverse = ({
   return (
     <Suspense fallback={null}>
       <Physics gravity={[0, -30, 0]} broadphase="SAP">
-        <Player />
         <Ground />
+        <Player
+          isCustomModalOpen={isCustomModalOpen}
+          isGuestBookOpen={isGuestBookOpen}
+        />
         {/* <Avatar scale={0.007} position={[0, 0, -2]} /> */}
         {/* <Debug scale={1.1} color="black"></Debug> */}
         <WelcomText />
@@ -60,7 +67,11 @@ const Altaverse = ({
       <Management />
       <Project />
       <PreHaus setIsCustomModalOpen={setIsCustomModalOpen} />
-      <GuestBoard setIsGuestBookOpen={setIsGuestBookOpen} />
+      <GuestBoard
+        setIsGuestBookOpen={setIsGuestBookOpen}
+        getGuestBook={getGuestBook}
+        guestBookList={guestBookList}
+      />
     </Suspense>
   )
 }

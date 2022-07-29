@@ -3,25 +3,26 @@ import { Html, RoundedBox } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
 import axios from "axios"
 import { ChangeTimeFormat, cls } from "@modules/utils"
+import useMutation from "@modules/hooks/useMutation"
+import useGuestBook from "@modules/hooks/useGuestBook"
 
 interface Props {
   setIsGuestBookOpen: React.Dispatch<React.SetStateAction<boolean>>
+  getGuestBook: (data: any) => void
+  guestBookList: any
 }
 
-const GuestBoard = ({ setIsGuestBookOpen }: Props) => {
-  const [guestBookList, setGuestBookList] = useState([])
-
-  const getGuestBookList = async () => {
-    axios.get("http://localhost:9999/guestBook").then(res => {
-      console.log(res.data)
-      setGuestBookList(res.data.reverse())
-    })
-  }
-
+const GuestBoard = ({
+  setIsGuestBookOpen,
+  getGuestBook,
+  guestBookList,
+}: Props) => {
   useEffect(() => {
-    getGuestBookList()
+    getGuestBook({})
   }, [])
-
+  useEffect(() => {
+    console.log("guestBookList >", guestBookList)
+  }, [guestBookList])
   return (
     <Suspense fallback={null}>
       <group position={[13, 0.9, -1]} rotation={[0, -degToRad(140), 0]}>
@@ -62,23 +63,25 @@ const GuestBoard = ({ setIsGuestBookOpen }: Props) => {
           </RoundedBox>
           <Html occlude scale={0.06} transform position={[0, 0, 0.02]}>
             <ul className="gl-scrollbar w-[900px] h-[600px] grid grid-cols-3 gap-3 select-none items-start overflow-y-scroll">
-              {guestBookList.length > 0 &&
+              {guestBookList &&
+                guestBookList.length > 0 &&
                 guestBookList.map((item: any, index: number) => {
                   return (
                     <li
                       key={index}
-                      className="flex flex-col gap-3 rounded-lg bg-[rgba(255,255,255,0.05)] backdrop-blur-sm p-3 font-Questrial h-[240px]"
+                      className="flex flex-col gap-3 rounded-lg bg-[rgba(255,255,255,0.05)] backdrop-blur-sm py-3 px-4 font-Questrial h-[240px]"
                     >
                       <p className="flex gap-3 items-center justify-between">
-                        <span className="text-lg text-[#b2a1ff]">
+                        <span className="text-lg text-[#b2a1ff] block w-[70%] truncate">
                           {item.name}{" "}
                         </span>
                         <span className="text-xs text-[#aaa]">
                           {ChangeTimeFormat(item.created_at)}
                         </span>
                       </p>
-                      <p className="text-[#eee]">{item.comment}</p>
-                      <p></p>
+                      <div className="gl-scrollbar text-[#eee] w-full h-full whitespace-normal min-w-0 break-words overflow-y-scroll">
+                        {item.comment}
+                      </div>
                     </li>
                   )
                 })}
