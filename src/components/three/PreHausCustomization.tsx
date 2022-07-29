@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useRef, useState } from "react"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import {
   ContactShadows,
   Loader,
@@ -11,14 +11,7 @@ import {
 import { degToRad } from "three/src/math/MathUtils"
 import { proxy } from "valtio"
 
-import {
-  BootsBody,
-  BootsOutsole1,
-  BootsOutsole2,
-  BootsOutsole3,
-  BootsOutsole4,
-  PreHausSelectParts,
-} from "."
+import { BootsContainer, PreHausSelectParts } from "."
 import { selectedPartsName } from "@constants/preHaus"
 import { BootsColorState } from "@interface/bootsColorState"
 import { cls } from "@modules/utils"
@@ -84,39 +77,11 @@ const PreHausCustomization = ({
         </button>
         <Canvas frameloop="demand">
           <Suspense fallback={null}>
-            <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
-              <BootsBody scale={0.08} />
-              {outsoleOption === 0 && (
-                <BootsOutsole1
-                  scale={0.08}
-                  position={[0, 0, 0]}
-                  // state={state}
-                />
-              )}
-              {outsoleOption === 1 && (
-                <BootsOutsole2
-                  scale={0.08}
-                  position={[0, 0, 0]}
-                  // state={state}
-                />
-              )}
-              {outsoleOption === 2 && (
-                <BootsOutsole3
-                  scale={0.08}
-                  position={[0, 0, 0]}
-                  // state={state}
-                />
-              )}
-              {outsoleOption === 3 && (
-                <BootsOutsole4
-                  scale={0.08}
-                  position={[0, 0, 0]}
-                  // state={state}
-                />
-              )}
-            </group>
-            {/* <Center>
-            </Center> */}
+            <BootsContainer
+              outsoleOption={outsoleOption}
+              selectedPartIndex={selectedPartIndex}
+              setSelectedPartIndex={setSelectedPartIndex}
+            />
 
             <OrbitControls
               makeDefault
