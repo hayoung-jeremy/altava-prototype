@@ -21,6 +21,8 @@ interface Props {
   getGuestBook: (data: any) => void
   guestBookList: any
   isHelperGuideOpen: boolean
+  outsoleOption: number
+  setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
 }
 
 const Altaverse = ({
@@ -31,6 +33,8 @@ const Altaverse = ({
   getGuestBook,
   guestBookList,
   isHelperGuideOpen,
+  outsoleOption,
+  setOutsoleOption,
 }: Props) => {
   const pointerLockControlRef = useRef<any>(null)
 
@@ -69,7 +73,11 @@ const Altaverse = ({
       {/* Layout */}
       <Management />
       <Project />
-      <PreHaus setIsCustomModalOpen={setIsCustomModalOpen} />
+      <PreHaus
+        setIsCustomModalOpen={setIsCustomModalOpen}
+        outsoleOption={outsoleOption}
+        setOutsoleOption={setOutsoleOption}
+      />
       <GuestBoard
         setIsGuestBookOpen={setIsGuestBookOpen}
         getGuestBook={getGuestBook}

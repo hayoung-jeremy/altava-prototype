@@ -10,16 +10,16 @@ import { bootsColorState } from "./PreHausCustomization"
 interface Props {
   selectedPartIndex: number
   setSelectedPartIndex: React.Dispatch<React.SetStateAction<number>>
+  outsoleOption: number
   setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
-  //   state: BootsColorState
 }
 
 const PreHausSelectParts = ({
   selectedPartIndex,
   setSelectedPartIndex,
+  outsoleOption,
   setOutsoleOption,
-}: //   state,
-Props) => {
+}: Props) => {
   const [selectedOutsoleIndex, setSelectedOutsoleIndex] = useState(0)
 
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false)
@@ -39,10 +39,8 @@ Props) => {
   }
 
   useEffect(() => {
-    console.log(
-      "bootsColorState.parts[snap.current!] : ",
-      bootsColorState.parts[snap.current!]
-    )
+    console.log("outsoleOption : ", outsoleOption)
+    setSelectedOutsoleIndex(outsoleOption)
   }, [])
 
   return (

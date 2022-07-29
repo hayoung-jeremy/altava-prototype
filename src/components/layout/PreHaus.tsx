@@ -13,11 +13,16 @@ import { degToRad } from "three/src/math/MathUtils"
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  outsoleOption: number
+  setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
 }
 
-const PreHaus = ({ setIsCustomModalOpen }: Props) => {
+const PreHaus = ({
+  setIsCustomModalOpen,
+  outsoleOption,
+  setOutsoleOption,
+}: Props) => {
   const [color, setColor] = useState("#fff")
-  const [outsoleOption, setOutsoleOption] = useState(0)
 
   return (
     <Suspense fallback={null}>

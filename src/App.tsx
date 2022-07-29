@@ -13,6 +13,7 @@ function App() {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false)
   const [isGuestBookOpen, setIsGuestBookOpen] = useState(false)
   const { getGuestBook, guestBookList } = useGuestBook()
+  const [outsoleOption, setOutsoleOption] = useState(0)
 
   return (
     <div className="w-screen h-screen overflow-hidden">
@@ -37,6 +38,8 @@ function App() {
               isHelperGuideOpen={isHelperGuideOpen}
               getGuestBook={getGuestBook}
               guestBookList={guestBookList}
+              outsoleOption={outsoleOption}
+              setOutsoleOption={setOutsoleOption}
             />
 
             {/* helpers */}
@@ -52,7 +55,11 @@ function App() {
         <HelperGuide setIsHelperGuideOpen={setIsHelperGuideOpen} />
       )}
       {isCustomModalOpen && (
-        <PreHausCustomization setIsCustomModalOpen={setIsCustomModalOpen} />
+        <PreHausCustomization
+          setIsCustomModalOpen={setIsCustomModalOpen}
+          outsoleOption={outsoleOption}
+          setOutsoleOption={setOutsoleOption}
+        />
       )}
       {isGuestBookOpen && (
         <GuestBookInput

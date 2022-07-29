@@ -25,6 +25,8 @@ import { cls } from "@modules/utils"
 
 interface Props {
   setIsCustomModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  outsoleOption: number
+  setOutsoleOption: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const bootsColorState: BootsColorState = proxy({
@@ -39,9 +41,12 @@ export const bootsColorState: BootsColorState = proxy({
   },
 })
 
-const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
+const PreHausCustomization = ({
+  setIsCustomModalOpen,
+  outsoleOption,
+  setOutsoleOption,
+}: Props) => {
   const [selectedPartIndex, setSelectedPartIndex] = useState(0)
-  const [outsoleOption, setOutsoleOption] = useState(0)
 
   useEffect(() => {
     bootsColorState.current = selectedPartsName[selectedPartIndex]
@@ -147,6 +152,7 @@ const PreHausCustomization = ({ setIsCustomModalOpen }: Props) => {
       <PreHausSelectParts
         selectedPartIndex={selectedPartIndex}
         setSelectedPartIndex={setSelectedPartIndex}
+        outsoleOption={outsoleOption}
         setOutsoleOption={setOutsoleOption}
         // state={state}
       />
