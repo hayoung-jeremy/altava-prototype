@@ -29,14 +29,14 @@ const GuestBookInput = ({
   } = useForm<FormData>()
 
   const onSubmit = async (data: FormData) => {
-    console.log(data)
+    // console.log(data)
     await axios
       .post("http://10.190.141.51:9999/guestBook", {
         name: data.name,
         comment: data.comment,
       })
       .then(() => {
-        console.log("write  완료")
+        // console.log("write  완료")
         getGuestBook({})
       })
       .then(() => setIsGuestBookOpen(false))

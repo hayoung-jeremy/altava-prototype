@@ -41,10 +41,6 @@ const Altaverse = ({
 
   const { camera, controls, gl } = useThree()
 
-  useEffect(() => {
-    console.log(pointerLockControlRef)
-  }, [pointerLockControlRef])
-
   return (
     <Suspense fallback={null}>
       <Physics gravity={[0, -30, 0]} broadphase="SAP">

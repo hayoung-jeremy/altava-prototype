@@ -39,7 +39,7 @@ const PreHausSelectParts = ({
   }
 
   useEffect(() => {
-    console.log("outsoleOption : ", outsoleOption)
+    // console.log("outsoleOption : ", outsoleOption)
     setSelectedOutsoleIndex(outsoleOption)
   }, [])
 

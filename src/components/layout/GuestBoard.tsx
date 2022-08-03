@@ -20,9 +20,7 @@ const GuestBoard = ({
   useEffect(() => {
     getGuestBook({})
   }, [])
-  useEffect(() => {
-    console.log("guestBookList >", guestBookList)
-  }, [guestBookList])
+
   return (
     <Suspense fallback={null}>
       <group position={[13, 0.9, -1]} rotation={[0, -degToRad(140), 0]}>
