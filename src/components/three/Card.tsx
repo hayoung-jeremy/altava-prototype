@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Suspense, useRef, useState } from "react"
 import { Html, Image, RoundedBox } from "@react-three/drei"
 import * as THREE from "three"
