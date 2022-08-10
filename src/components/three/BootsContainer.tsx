@@ -45,57 +45,50 @@ const BootsContainer = ({
 
   return (
     <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
-      <Bounds damping={2} margin={0.5}>
-        <BootsBodyPartsQuarter
-          scale={0.08}
-          selectedPartIndex={selectedPartIndex}
-        />
-        <BootsBodyPartsVamp
-          scale={0.08}
-          selectedPartIndex={selectedPartIndex}
-        />
-        <BootsBodyPartsLace
-          scale={0.08}
-          selectedPartIndex={selectedPartIndex}
-        />
-        <BootsBodyPartsBackCounter
-          scale={0.08}
-          selectedPartIndex={selectedPartIndex}
-        />
-        <BootsBodyPartsPullLoops
-          scale={0.08}
-          selectedPartIndex={selectedPartIndex}
-        />
+      <BootsBodyPartsQuarter
+        scale={0.08}
+        selectedPartIndex={selectedPartIndex}
+      />
+      <BootsBodyPartsVamp scale={0.08} selectedPartIndex={selectedPartIndex} />
+      <BootsBodyPartsLace scale={0.08} selectedPartIndex={selectedPartIndex} />
+      <BootsBodyPartsBackCounter
+        scale={0.08}
+        selectedPartIndex={selectedPartIndex}
+      />
+      <BootsBodyPartsPullLoops
+        scale={0.08}
+        selectedPartIndex={selectedPartIndex}
+      />
 
-        {outsoleOption === 0 && (
-          <BootsOutsole1
-            scale={0.08}
-            position={[0, 0, 0]}
-            selectedPartIndex={selectedPartIndex}
-          />
-        )}
-        {outsoleOption === 1 && (
-          <BootsOutsole2
-            scale={0.08}
-            position={[0, 0, 0]}
-            selectedPartIndex={selectedPartIndex}
-          />
-        )}
-        {outsoleOption === 2 && (
-          <BootsOutsole3
-            scale={0.08}
-            position={[0, 0, 0]}
-            selectedPartIndex={selectedPartIndex}
-          />
-        )}
-        {outsoleOption === 3 && (
-          <BootsOutsole4
-            scale={0.08}
-            position={[0, 0, 0]}
-            selectedPartIndex={selectedPartIndex}
-          />
-        )}
-      </Bounds>
+      {outsoleOption === 0 && (
+        <BootsOutsole1
+          scale={0.08}
+          position={[0, 0, 0]}
+          selectedPartIndex={selectedPartIndex}
+        />
+      )}
+      {outsoleOption === 1 && (
+        <BootsOutsole2
+          scale={0.08}
+          position={[0, 0, 0]}
+          selectedPartIndex={selectedPartIndex}
+        />
+      )}
+      {outsoleOption === 2 && (
+        <BootsOutsole3
+          scale={0.08}
+          position={[0, 0, 0]}
+          selectedPartIndex={selectedPartIndex}
+        />
+      )}
+      {outsoleOption === 3 && (
+        <BootsOutsole4
+          scale={0.08}
+          position={[0, 0, 0]}
+          selectedPartIndex={selectedPartIndex}
+        />
+      )}
+      {/* <Bounds damping={2} margin={0.5}></Bounds> */}
     </group>
   )
 }

@@ -22,13 +22,13 @@ export default function BootsBodyPartsPullLoops({ ...props }: any) {
   ) as GLTFResult
 
   const snap = useSnapshot(bootsColorState)
-  const api = useBounds()
+  // const api = useBounds()
 
-  useEffect(() => {
-    if (props.selectedPartIndex === 4 && group.current) {
-      api.refresh(group.current).fit()
-    }
-  }, [props.selectedPartIndex])
+  // useEffect(() => {
+  //   if (props.selectedPartIndex === 4 && group.current) {
+  //     api.refresh(group.current).fit()
+  //   }
+  // }, [props.selectedPartIndex])
 
   return (
     <group ref={group} {...props} dispose={null}>

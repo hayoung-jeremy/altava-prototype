@@ -25,17 +25,17 @@ export default function BootsBodyPartsVamp({ ...props }: any) {
   ) as GLTFResult
 
   const snap = useSnapshot(bootsColorState)
-  const api = useBounds()
-  const { camera, controls } = useThree()
-  const vec = new THREE.Vector3()
+  // const api = useBounds()
+  // const { camera, controls } = useThree()
+  // const vec = new THREE.Vector3()
 
-  useEffect(() => {
-    if (props.selectedPartIndex === 1 && group.current) {
-      console.log("api : ", api)
-      // api.refresh().fit()
-      api.refresh(group.current).fit()
-    }
-  }, [props.selectedPartIndex])
+  // useEffect(() => {
+  //   if (props.selectedPartIndex === 1 && group.current) {
+  //     console.log("api : ", api)
+  //     // api.refresh().fit()
+  //     api.refresh(group.current).fit()
+  //   }
+  // }, [props.selectedPartIndex])
 
   return (
     <group ref={group} {...props} dispose={null}>

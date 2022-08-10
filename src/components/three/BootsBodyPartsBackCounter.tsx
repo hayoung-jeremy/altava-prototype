@@ -22,13 +22,13 @@ export default function BootsBodyPartsBackCounter({ ...props }: any) {
   ) as GLTFResult
 
   const snap = useSnapshot(bootsColorState)
-  const api = useBounds()
+  // const api = useBounds()
 
-  useEffect(() => {
-    if (props.selectedPartIndex === 3 && group.current) {
-      api.refresh(group.current).fit()
-    }
-  }, [props.selectedPartIndex])
+  // useEffect(() => {
+  //   if (props.selectedPartIndex === 3 && group.current) {
+  //     api.refresh(group.current).fit()
+  //   }
+  // }, [props.selectedPartIndex])
 
   return (
     <group ref={group} {...props} dispose={null}>
