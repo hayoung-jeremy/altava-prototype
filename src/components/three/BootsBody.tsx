@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function Model({ ...props }: any) {
+export default function BootsBody({ ...props }: any) {
   const group = useRef<THREE.Group>(null)
   const { nodes, materials } = useGLTF(
     "assets/boots/NFT_BOOTS_BODY.glb"

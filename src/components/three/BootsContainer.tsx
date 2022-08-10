@@ -1,9 +1,14 @@
-import React, { useState } from "react"
-import { useFrame } from "@react-three/fiber"
+import React, { useEffect, useState } from "react"
 import * as THREE from "three"
+import { useFrame } from "@react-three/fiber"
+import { Bounds } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils"
 import {
-  BootsBody,
+  BootsBodyPartsBackCounter,
+  BootsBodyPartsLace,
+  BootsBodyPartsPullLoops,
+  BootsBodyPartsQuarter,
+  BootsBodyPartsVamp,
   BootsOutsole1,
   BootsOutsole2,
   BootsOutsole3,
@@ -34,38 +39,63 @@ const BootsContainer = ({
   //     state.camera.lookAt(0, 0, 0)
   //     state.camera.updateProjectionMatrix()
   //   })
+  useEffect(() => {
+    console.log("askdalsjdlk")
+  }, [])
 
   return (
     <group rotation={[degToRad(10), 0, 0]} position={[0, -1.05, 0]}>
-      <BootsBody scale={0.08} />
-      {outsoleOption === 0 && (
-        <BootsOutsole1
+      <Bounds damping={2} margin={0.5}>
+        <BootsBodyPartsQuarter
           scale={0.08}
-          position={[0, 0, 0]}
-          // state={state}
+          selectedPartIndex={selectedPartIndex}
         />
-      )}
-      {outsoleOption === 1 && (
-        <BootsOutsole2
+        <BootsBodyPartsVamp
           scale={0.08}
-          position={[0, 0, 0]}
-          // state={state}
+          selectedPartIndex={selectedPartIndex}
         />
-      )}
-      {outsoleOption === 2 && (
-        <BootsOutsole3
+        <BootsBodyPartsLace
           scale={0.08}
-          position={[0, 0, 0]}
-          // state={state}
+          selectedPartIndex={selectedPartIndex}
         />
-      )}
-      {outsoleOption === 3 && (
-        <BootsOutsole4
+        <BootsBodyPartsBackCounter
           scale={0.08}
-          position={[0, 0, 0]}
-          // state={state}
+          selectedPartIndex={selectedPartIndex}
         />
-      )}
+        <BootsBodyPartsPullLoops
+          scale={0.08}
+          selectedPartIndex={selectedPartIndex}
+        />
+
+        {outsoleOption === 0 && (
+          <BootsOutsole1
+            scale={0.08}
+            position={[0, 0, 0]}
+            selectedPartIndex={selectedPartIndex}
+          />
+        )}
+        {outsoleOption === 1 && (
+          <BootsOutsole2
+            scale={0.08}
+            position={[0, 0, 0]}
+            selectedPartIndex={selectedPartIndex}
+          />
+        )}
+        {outsoleOption === 2 && (
+          <BootsOutsole3
+            scale={0.08}
+            position={[0, 0, 0]}
+            selectedPartIndex={selectedPartIndex}
+          />
+        )}
+        {outsoleOption === 3 && (
+          <BootsOutsole4
+            scale={0.08}
+            position={[0, 0, 0]}
+            selectedPartIndex={selectedPartIndex}
+          />
+        )}
+      </Bounds>
     </group>
   )
 }

@@ -44,8 +44,8 @@ const PreHausCustomization = ({
   useEffect(() => {
     bootsColorState.current = selectedPartsName[selectedPartIndex]
 
-    console.log("selectedPartIndex : ", selectedPartIndex)
-    console.log("bootsColorState.current : ", bootsColorState.current)
+    // console.log("selectedPartIndex : ", selectedPartIndex)
+    // console.log("bootsColorState.current : ", bootsColorState.current)
   }, [selectedPartIndex])
 
   return (

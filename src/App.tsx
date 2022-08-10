@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen overflow-hidden">
-      {!isCustomModalOpen && (
+      {isCustomModalOpen && (
         <>
           <Canvas
             shadows
@@ -54,7 +54,7 @@ function App() {
       {isHelperGuideOpen && (
         <HelperGuide setIsHelperGuideOpen={setIsHelperGuideOpen} />
       )}
-      {isCustomModalOpen && (
+      {!isCustomModalOpen && (
         <PreHausCustomization
           setIsCustomModalOpen={setIsCustomModalOpen}
           outsoleOption={outsoleOption}

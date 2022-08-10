@@ -12,7 +12,7 @@ export { default as BootsBodyPartsBackCounter } from "./BootsBodyPartsBackCounte
 export { default as BootsBodyPartsLace } from "./BootsBodyPartsLace"
 export { default as BootsBodyPartsPullLoops } from "./BootsBodyPartsPullLoops"
 export { default as BootsBodyPartsQuarter } from "./BootsBodyPartsQuarter"
-export { default as BootsBodyPartsVamp } from "./BootsBody"
+export { default as BootsBodyPartsVamp } from "./BootsBodyPartsVamp"
 export { default as BootsOutsole1 } from "./BootsOutsole1"
 export { default as BootsOutsole2 } from "./BootsOutsole2"
 export { default as BootsOutsole3 } from "./BootsOutsole3"
